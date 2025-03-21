@@ -1,0 +1,18 @@
+flutter_native_splash:
+  color: "#00C9A7" 
+  image: "assets/png/glide_logo_dark.png" 
+  color_dark: "#00C9A7" 
+  image_dark: "assets/png/glide_logo_dark.png" 
+
+  # android_12:
+  #   image: "assets/png/glide_logo_dark.png"
+  #   icon_background_color: "#00C9A7"
+  #   image_dark: "assets/png/glide_logo_dark.png"
+  #   icon_background_color_dark: "#00C9A7"
+
+  android: true
+  ios: false
+  web: false
+  fullscreen: true
+  android_gravity: center
+  ios_content_mode: center

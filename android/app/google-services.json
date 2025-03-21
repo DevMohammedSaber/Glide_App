@@ -1,0 +1,90 @@
+{
+  "project_info": {
+    "project_number": "747086167586",
+    "project_id": "glide-30a3f",
+    "storage_bucket": "glide-30a3f.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:747086167586:android:9a8368a4ebc38e22a4147b",
+        "android_client_info": {
+          "package_name": "com.adamexpress.glide"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "747086167586-0b45m5g90sq8qacpds25mfhtnrr09gsp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCanqMInNsOHUxaKHlrFPbhg0p9bY2ezgQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "747086167586-0b45m5g90sq8qacpds25mfhtnrr09gsp.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "747086167586-o63c35reobnfcfdic46q2i8bcds4975f.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.express.glide"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:747086167586:android:2126600c5b7f5715a4147b",
+        "android_client_info": {
+          "package_name": "com.express.glide"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "747086167586-sb6dhhcvu0855t02g803qmh8obfe7udl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.express.glide",
+            "certificate_hash": "516278520f10034247e7819db0e820cc3a4b533e"
+          }
+        },
+        {
+          "client_id": "747086167586-0b45m5g90sq8qacpds25mfhtnrr09gsp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCanqMInNsOHUxaKHlrFPbhg0p9bY2ezgQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "747086167586-0b45m5g90sq8qacpds25mfhtnrr09gsp.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "747086167586-o63c35reobnfcfdic46q2i8bcds4975f.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.express.glide"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
