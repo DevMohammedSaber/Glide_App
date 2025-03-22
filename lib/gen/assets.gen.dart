@@ -51,8 +51,14 @@ class $AssetsSvgGen {
   /// File path: assets/svg/history.svg
   String get history => 'assets/svg/history.svg';
 
+  /// File path: assets/svg/history_filled.svg
+  String get historyFilled => 'assets/svg/history_filled.svg';
+
   /// File path: assets/svg/home.svg
   String get home => 'assets/svg/home.svg';
+
+  /// File path: assets/svg/home_filled.svg
+  String get homeFilled => 'assets/svg/home_filled.svg';
 
   /// File path: assets/svg/home_outlined.svg
   String get homeOutlined => 'assets/svg/home_outlined.svg';
@@ -72,6 +78,9 @@ class $AssetsSvgGen {
   /// File path: assets/svg/profile.svg
   String get profile => 'assets/svg/profile.svg';
 
+  /// File path: assets/svg/profile_filled.svg
+  String get profileFilled => 'assets/svg/profile_filled.svg';
+
   /// File path: assets/svg/search.svg
   String get search => 'assets/svg/search.svg';
 
@@ -90,13 +99,16 @@ class $AssetsSvgGen {
     food,
     google,
     history,
+    historyFilled,
     home,
+    homeFilled,
     homeOutlined,
     lightGlideLogo,
     market,
     medicine,
     more,
     profile,
+    profileFilled,
     search,
     taxi,
     work,

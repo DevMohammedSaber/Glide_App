@@ -53,7 +53,9 @@ class LayoutScreen extends StatelessWidget {
                     icon: SvgPicture.asset(
                       width: 32.w,
                       height: 32.h,
-                      Assets.svg.homeOutlined,
+                      state == 0
+                          ? Assets.svg.homeFilled
+                          : Assets.svg.homeOutlined,
                       colorFilter: state == 0
                           ? const ColorFilter.mode(
                               AppColors.primaryColor,
@@ -65,7 +67,9 @@ class LayoutScreen extends StatelessWidget {
                   ),
                   BottomNavigationBarItem(
                     icon: SvgPicture.asset(
-                      Assets.svg.history,
+                      state == 1
+                          ? Assets.svg.historyFilled
+                          : Assets.svg.history,
                       width: 32.w,
                       height: 32.h,
                       colorFilter: state == 1
@@ -81,7 +85,9 @@ class LayoutScreen extends StatelessWidget {
                     icon: SvgPicture.asset(
                       width: 32.w,
                       height: 32.h,
-                      Assets.svg.profile,
+                      state == 2
+                          ? Assets.svg.profileFilled
+                          : Assets.svg.profile,
                       colorFilter: state == 2
                           ? const ColorFilter.mode(
                               AppColors.primaryColor,
