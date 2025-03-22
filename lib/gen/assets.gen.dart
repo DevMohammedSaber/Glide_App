@@ -12,19 +12,18 @@ import 'package:flutter/widgets.dart';
 class $AssetsPngGen {
   const $AssetsPngGen();
 
-  /// File path: assets/png/Group 1 (3).png
-  AssetGenImage get group13 =>
-      const AssetGenImage('assets/png/Group 1 (3).png');
-
   /// File path: assets/png/banner.png
   AssetGenImage get banner => const AssetGenImage('assets/png/banner.png');
+
+  /// File path: assets/png/empty.png
+  AssetGenImage get empty => const AssetGenImage('assets/png/empty.png');
 
   /// File path: assets/png/onboarding.png
   AssetGenImage get onboarding =>
       const AssetGenImage('assets/png/onboarding.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [group13, banner, onboarding];
+  List<AssetGenImage> get values => [banner, empty, onboarding];
 }
 
 class $AssetsSvgGen {
@@ -35,6 +34,9 @@ class $AssetsSvgGen {
 
   /// File path: assets/svg/bus.svg
   String get bus => 'assets/svg/bus.svg';
+
+  /// File path: assets/svg/bus_trip.svg
+  String get busTrip => 'assets/svg/bus_trip.svg';
 
   /// File path: assets/svg/dark_glide_logo.svg
   String get darkGlideLogo => 'assets/svg/dark_glide_logo.svg';
@@ -87,6 +89,9 @@ class $AssetsSvgGen {
   /// File path: assets/svg/taxi.svg
   String get taxi => 'assets/svg/taxi.svg';
 
+  /// File path: assets/svg/taxi_trip.svg
+  String get taxiTrip => 'assets/svg/taxi_trip.svg';
+
   /// File path: assets/svg/work.svg
   String get work => 'assets/svg/work.svg';
 
@@ -94,6 +99,7 @@ class $AssetsSvgGen {
   List<String> get values => [
     buildings,
     bus,
+    busTrip,
     darkGlideLogo,
     elder,
     food,
@@ -111,6 +117,7 @@ class $AssetsSvgGen {
     profileFilled,
     search,
     taxi,
+    taxiTrip,
     work,
   ];
 }

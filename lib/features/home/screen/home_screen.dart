@@ -1,41 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:glide/core/widgets/custom_app_bar.dart';
 import 'package:glide/features/home/widgets/home_body.dart';
-import 'package:glide/gen/assets.gen.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        leadingWidth: 100.w,
-        leading: Padding(
-          padding: const EdgeInsets.only(left: 16.0),
-          child: SvgPicture.asset(Assets.svg.darkGlideLogo, height: 24.h),
-        ),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.menu_rounded, size: 32.sp),
-            onPressed: () {},
-          ),
-        ],
-      ),
-      body: const HomeBody(),
+    return const Scaffold(
+      appBar: CustomAppBar(),
+      body: HomeBody(),
     );
   }
 }
