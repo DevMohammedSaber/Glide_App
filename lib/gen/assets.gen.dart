@@ -12,6 +12,10 @@ import 'package:flutter/widgets.dart';
 class $AssetsPngGen {
   const $AssetsPngGen();
 
+  /// File path: assets/png/Group 1 (3).png
+  AssetGenImage get group13 =>
+      const AssetGenImage('assets/png/Group 1 (3).png');
+
   /// File path: assets/png/banner.png
   AssetGenImage get banner => const AssetGenImage('assets/png/banner.png');
 
@@ -20,7 +24,7 @@ class $AssetsPngGen {
       const AssetGenImage('assets/png/onboarding.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [banner, onboarding];
+  List<AssetGenImage> get values => [group13, banner, onboarding];
 }
 
 class $AssetsSvgGen {
@@ -49,6 +53,9 @@ class $AssetsSvgGen {
 
   /// File path: assets/svg/home.svg
   String get home => 'assets/svg/home.svg';
+
+  /// File path: assets/svg/home_outlined.svg
+  String get homeOutlined => 'assets/svg/home_outlined.svg';
 
   /// File path: assets/svg/light_glide_logo.svg
   String get lightGlideLogo => 'assets/svg/light_glide_logo.svg';
@@ -84,6 +91,7 @@ class $AssetsSvgGen {
     google,
     history,
     home,
+    homeOutlined,
     lightGlideLogo,
     market,
     medicine,
