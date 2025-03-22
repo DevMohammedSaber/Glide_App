@@ -27,7 +27,7 @@ class _SliderWidgetState extends State<SliderWidget> {
             disableCenter: true,
             enlargeCenterPage: true,
             viewportFraction: 1,
-            aspectRatio: 2.1,
+            aspectRatio: 2.6,
             onPageChanged: (index, reason) {
               setState(() {
                 currentIndex = index.toDouble();
@@ -50,7 +50,8 @@ class _SliderWidgetState extends State<SliderWidget> {
           position: currentIndex,
           decorator: DotsDecorator(
             activeColor: AppColors.primaryColor,
-            activeSize: const Size(24, 9),
+            activeSize: const Size(18, 6),
+            size: const Size(6, 6),
             activeShape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(5.0)),
           ),

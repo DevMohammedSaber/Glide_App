@@ -9,8 +9,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 
 class PhoneFormCubit extends Cubit<PhoneFormState> {
-  PhoneFormCubit() : super(PhoneFormState()) {
-    emit(PhoneFormState(
+  PhoneFormCubit() : super(const PhoneFormState()) {
+    emit(const PhoneFormState(
       selectedCountry: 'CA',
       countryCode: '1',
     ));

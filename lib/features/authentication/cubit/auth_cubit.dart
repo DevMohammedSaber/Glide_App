@@ -6,7 +6,7 @@ import 'package:glide/features/authentication/cubit/auth_states.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthCubit extends Cubit<AuthStates> {
-  AuthCubit() : super(AuthInitial());
+  AuthCubit() : super(const AuthInitial());
   final TextEditingController phoneFormField = TextEditingController();
   String countryCode = "1";
   String slectedCountry = "CA";
@@ -14,7 +14,7 @@ class AuthCubit extends Cubit<AuthStates> {
   final GoogleSignIn _googleSignIn = GoogleSignIn();
 
   Future signInWithGoogle() async {
-    emit(AuthLoading());
+    emit(const AuthLoading());
     try {
       final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
       log("Google User: $googleUser");
@@ -22,7 +22,7 @@ class AuthCubit extends Cubit<AuthStates> {
         return null;
       }
 
-      emit(AuthWithGoogleSuccess());
+      emit(const AuthWithGoogleSuccess());
     } catch (e) {
       debugPrint("Error during Google SignIn: $e");
       emit(AuthWithGoogleError(
