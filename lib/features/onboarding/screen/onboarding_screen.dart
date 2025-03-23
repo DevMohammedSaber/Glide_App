@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:glide/core/constants/prefs_keys.dart';
 import 'package:glide/core/navigation/app_routes.dart';
+import 'package:glide/core/utils/helpers/app_preferences.dart';
 import 'package:glide/core/widgets/custom_phone_form_field.dart';
 import 'package:glide/gen/assets.gen.dart';
 import 'package:go_router/go_router.dart';
@@ -27,22 +29,20 @@ class OnboardingScreen extends StatelessWidget {
                 style: Theme.of(context).textTheme.headlineMedium,
               ),
             ),
-            InkWell(
-              onTap: () {
-                context.go(AppRoutes.authenticationScreen);
-              },
-              child: Hero(
-                tag: 'phone',
-                child: CustomPhoneFormField(
-                  readOnly: true,
-                  enablePicker: false,
-                  countryCode: '1',
-                  selectedCountry: "CA",
-                  padding: const EdgeInsets.all(16),
-                  onTap: () {
+            Hero(
+              tag: 'phone',
+              child: CustomPhoneFormField(
+                readOnly: true,
+                enablePicker: false,
+                countryCode: '1',
+                selectedCountry: "CA",
+                padding: const EdgeInsets.all(16),
+                onTap: () async {
+                  await AppPreferences().setBool(PrefKeys.isOnboarding, true);
+                  if (context.mounted) {
                     context.go(AppRoutes.authenticationScreen);
-                  },
-                ),
+                  }
+                },
               ),
             ),
           ],

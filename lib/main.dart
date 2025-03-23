@@ -6,16 +6,19 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:glide/core/bloc_observer.dart';
 import 'package:glide/core/theme/theme.dart';
 import 'package:glide/core/navigation/router.dart';
+import 'package:glide/core/utils/helpers/app_preferences.dart';
 import 'package:glide/firebase_options.dart';
 
 void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+
+  await AppPreferences.init();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
   Bloc.observer = MyBlocObserver();
 
-  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   Future.delayed(
       const Duration(seconds: 2), () => FlutterNativeSplash.remove());
   runApp(const MyApp());

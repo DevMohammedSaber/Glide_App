@@ -12,18 +12,48 @@ import 'package:flutter/widgets.dart';
 class $AssetsPngGen {
   const $AssetsPngGen();
 
+  /// File path: assets/png/add_card.png
+  AssetGenImage get addCard => const AssetGenImage('assets/png/add_card.png');
+
+  /// File path: assets/png/apple_pay.png
+  AssetGenImage get applePay => const AssetGenImage('assets/png/apple_pay.png');
+
   /// File path: assets/png/banner.png
   AssetGenImage get banner => const AssetGenImage('assets/png/banner.png');
 
+  /// File path: assets/png/cash.png
+  AssetGenImage get cash => const AssetGenImage('assets/png/cash.png');
+
   /// File path: assets/png/empty.png
   AssetGenImage get empty => const AssetGenImage('assets/png/empty.png');
+
+  /// File path: assets/png/mastercard.png
+  AssetGenImage get mastercard =>
+      const AssetGenImage('assets/png/mastercard.png');
 
   /// File path: assets/png/onboarding.png
   AssetGenImage get onboarding =>
       const AssetGenImage('assets/png/onboarding.png');
 
+  /// File path: assets/png/visa.png
+  AssetGenImage get visa => const AssetGenImage('assets/png/visa.png');
+
+  /// File path: assets/png/wallet_card_background.png
+  AssetGenImage get walletCardBackground =>
+      const AssetGenImage('assets/png/wallet_card_background.png');
+
   /// List of all assets
-  List<AssetGenImage> get values => [banner, empty, onboarding];
+  List<AssetGenImage> get values => [
+    addCard,
+    applePay,
+    banner,
+    cash,
+    empty,
+    mastercard,
+    onboarding,
+    visa,
+    walletCardBackground,
+  ];
 }
 
 class $AssetsSvgGen {
@@ -92,6 +122,9 @@ class $AssetsSvgGen {
   /// File path: assets/svg/taxi_trip.svg
   String get taxiTrip => 'assets/svg/taxi_trip.svg';
 
+  /// File path: assets/svg/wallet_logo.svg
+  String get walletLogo => 'assets/svg/wallet_logo.svg';
+
   /// File path: assets/svg/work.svg
   String get work => 'assets/svg/work.svg';
 
@@ -118,6 +151,7 @@ class $AssetsSvgGen {
     search,
     taxi,
     taxiTrip,
+    walletLogo,
     work,
   ];
 }

@@ -2,6 +2,8 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:glide/core/constants/prefs_keys.dart';
+import 'package:glide/core/utils/helpers/app_preferences.dart';
 import 'package:glide/features/authentication/cubit/auth_states.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -21,13 +23,15 @@ class AuthCubit extends Cubit<AuthStates> {
       if (googleUser == null) {
         return null;
       }
-
+      await AppPreferences().setBool(PrefKeys.isLogin, true);
       emit(const AuthWithGoogleSuccess());
     } catch (e) {
       debugPrint("Error during Google SignIn: $e");
-      emit(AuthWithGoogleError(
-        error: "Error during Google SignIn: $e",
-      ));
+      emit(
+        AuthWithGoogleError(
+          error: "Error during Google SignIn: $e",
+        ),
+      );
 
       return null;
     }

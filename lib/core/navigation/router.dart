@@ -1,14 +1,23 @@
+import 'package:glide/core/constants/prefs_keys.dart';
 import 'package:glide/core/navigation/app_routes.dart';
+import 'package:glide/core/utils/helpers/app_preferences.dart';
 import 'package:glide/features/authentication/screens/auth_screen.dart';
 import 'package:glide/features/authentication/screens/otp_screen.dart';
-import 'package:glide/features/home/screen/home_screen.dart';
 import 'package:glide/features/layout/screen/layout_screen.dart';
 import 'package:glide/features/onboarding/screen/onboarding_screen.dart';
+import 'package:glide/features/profile/screens/wallert_screen.dart';
 import 'package:go_router/go_router.dart';
 
 final GoRouter router = GoRouter(
-  initialLocation: AppRoutes.layoutScreen,
-  redirect: (context, state) {
+  initialLocation: AppRoutes.authenticationScreen,
+  redirect: (context, state) async {
+    final isOnboarding =
+        AppPreferences().getBool(PrefKeys.isOnboarding) != null;
+    final isLogin = AppPreferences().getBool(PrefKeys.isLogin) != null;
+
+    if (!isOnboarding && !isLogin) return AppRoutes.onboardingScreen;
+    if (isOnboarding && !isLogin) return AppRoutes.authenticationScreen;
+    if (isOnboarding && isLogin) return AppRoutes.layoutScreen;
     return null;
   },
   routes: <RouteBase>[
@@ -41,21 +50,9 @@ final GoRouter router = GoRouter(
       },
     ),
     GoRoute(
-      path: AppRoutes.homeScreen,
+      path: AppRoutes.walletScreen,
       builder: (context, state) {
-        return const HomeScreen();
-      },
-    ),
-    GoRoute(
-      path: AppRoutes.homeScreen,
-      builder: (context, state) {
-        return const HomeScreen();
-      },
-    ),
-    GoRoute(
-      path: AppRoutes.homeScreen,
-      builder: (context, state) {
-        return const HomeScreen();
+        return const WallertScreen();
       },
     ),
   ],

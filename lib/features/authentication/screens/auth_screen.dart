@@ -4,8 +4,10 @@ import 'package:country_phone_validator/country_phone_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:glide/core/constants/prefs_keys.dart';
 import 'package:glide/core/navigation/app_routes.dart';
 import 'package:glide/core/theme/theme.dart';
+import 'package:glide/core/utils/helpers/app_preferences.dart';
 import 'package:glide/core/utils/helpers/snack_bar.dart';
 import 'package:glide/core/widgets/custom_phone_form_field.dart';
 import 'package:glide/core/widgets/loading_button.dart';
@@ -69,7 +71,7 @@ class AuthenticationScreen extends StatelessWidget {
                             fontWeight: FontWeight.w600,
                           ),
                     ),
-                    onPressed: () {
+                    onPressed: () async {
                       final isValid = CountryUtils.validatePhoneNumber(
                           context
                               .read<AuthCubit>()
@@ -97,11 +99,30 @@ class AuthenticationScreen extends StatelessWidget {
                           message: 'Please enter a valid phone number',
                         );
                       } else {
-                        context.push(AppRoutes.otpScreen, extra: {
-                          'phone':
-                              context.read<AuthCubit>().phoneFormField.text,
-                          'countryCode': context.read<AuthCubit>().countryCode,
-                        });
+                        await AppPreferences().setBool(PrefKeys.isLogin, true);
+                        if (context.mounted) {
+                          await AppPreferences().setString(
+                              PrefKeys.userNumber,
+                              context
+                                  .read<AuthCubit>()
+                                  .phoneFormField
+                                  .text
+                                  .toString());
+                        }
+                        if (context.mounted) {
+                          await AppPreferences().setString(
+                              PrefKeys.userCountryCode,
+                              context.read<AuthCubit>().countryCode.toString());
+                        }
+                        if (context.mounted) {
+                          ScaffoldMessenger.of(context).removeCurrentSnackBar();
+                          context.push(AppRoutes.otpScreen, extra: {
+                            'phone':
+                                context.read<AuthCubit>().phoneFormField.text,
+                            'countryCode':
+                                context.read<AuthCubit>().countryCode,
+                          });
+                        }
                       }
                     },
                   ),

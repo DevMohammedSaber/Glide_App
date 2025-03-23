@@ -6,7 +6,7 @@ import 'package:glide/core/theme/theme.dart';
 import 'package:glide/features/history/screen/history_screen.dart';
 import 'package:glide/features/home/screen/home_screen.dart';
 import 'package:glide/features/layout/cubit/layout_cubit.dart';
-import 'package:glide/features/profile/screen/profile_screen.dart';
+import 'package:glide/features/profile/screens/profile_screen.dart';
 import 'package:glide/gen/assets.gen.dart';
 
 class LayoutScreen extends StatelessWidget {

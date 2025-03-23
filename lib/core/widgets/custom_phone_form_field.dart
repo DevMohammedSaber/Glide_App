@@ -26,7 +26,7 @@ class PhoneFormCubit extends Cubit<PhoneFormState> {
   }
 }
 
-class PhoneFormState extends Equatable{
+class PhoneFormState extends Equatable {
   final String selectedCountry;
   final String countryCode;
 
@@ -38,6 +38,7 @@ class PhoneFormState extends Equatable{
       countryCode: countryCode ?? this.countryCode,
     );
   }
+
   @override
   List<Object> get props => [selectedCountry, countryCode];
 }
