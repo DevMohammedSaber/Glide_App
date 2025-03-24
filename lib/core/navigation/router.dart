@@ -9,16 +9,18 @@ import 'package:glide/features/profile/screens/wallert_screen.dart';
 import 'package:go_router/go_router.dart';
 
 final GoRouter router = GoRouter(
-  initialLocation: AppRoutes.authenticationScreen,
+  initialLocation: AppRoutes.layoutScreen,
   redirect: (context, state) async {
     final isOnboarding =
-        AppPreferences().getBool(PrefKeys.isOnboarding) != null;
-    final isLogin = AppPreferences().getBool(PrefKeys.isLogin) != null;
-
-    if (!isOnboarding && !isLogin) return AppRoutes.onboardingScreen;
-    if (isOnboarding && !isLogin) return AppRoutes.authenticationScreen;
-    if (isOnboarding && isLogin) return AppRoutes.layoutScreen;
-    return null;
+        AppPreferences().getBool(PrefKeys.isOnboarding) ?? false;
+    final isLogin = AppPreferences().getBool(PrefKeys.isLogin) ?? false;
+    if (!isOnboarding) {
+      return AppRoutes.onboardingScreen;
+    } else if (!isLogin) {
+      return AppRoutes.authenticationScreen;
+    } else {
+      return null;
+    }
   },
   routes: <RouteBase>[
     GoRoute(
