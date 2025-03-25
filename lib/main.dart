@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:glide/core/bloc_observer.dart';
+import 'package:glide/core/di.dart';
 import 'package:glide/core/theme/theme.dart';
 import 'package:glide/core/navigation/router.dart';
 import 'package:glide/core/utils/helpers/app_preferences.dart';
@@ -17,6 +18,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  configureDependencies();
   Bloc.observer = MyBlocObserver();
 
   Future.delayed(

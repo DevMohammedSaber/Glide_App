@@ -28,14 +28,27 @@ class AuthWithGoogleError extends AuthStates {
   List<Object> get props => [error];
 }
 
-class AuthWithPhoneSuccess extends AuthStates {
-  const AuthWithPhoneSuccess();
+
+class AuthWithPhoneNumberSendOtpSuccess extends AuthStates {
+  const AuthWithPhoneNumberSendOtpSuccess();
 }
 
-class AuthWithPhoneError extends AuthStates {
+class AuthWithPhoneNumberSendOtpError extends AuthStates {
   final String error;
 
-  const AuthWithPhoneError({required this.error});
+  const AuthWithPhoneNumberSendOtpError({required this.error});
+
+  @override
+  List<Object> get props => [error];
+}
+class AuthWithPhoneNumberVerifyOtpSuccess extends AuthStates {
+  const AuthWithPhoneNumberVerifyOtpSuccess();
+}
+
+class AuthWithPhoneNumberVerifyOtpError extends AuthStates {
+  final String error;
+
+  const AuthWithPhoneNumberVerifyOtpError({required this.error});
 
   @override
   List<Object> get props => [error];

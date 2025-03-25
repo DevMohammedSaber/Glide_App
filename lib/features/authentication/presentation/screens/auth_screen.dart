@@ -1,18 +1,15 @@
-import 'dart:developer';
-
 import 'package:country_phone_validator/country_phone_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:glide/core/constants/prefs_keys.dart';
+import 'package:glide/core/di.dart';
 import 'package:glide/core/navigation/app_routes.dart';
 import 'package:glide/core/theme/theme.dart';
-import 'package:glide/core/utils/helpers/app_preferences.dart';
 import 'package:glide/core/utils/helpers/snack_bar.dart';
 import 'package:glide/core/widgets/custom_phone_form_field.dart';
 import 'package:glide/core/widgets/loading_button.dart';
-import 'package:glide/features/authentication/cubit/auth_cubit.dart';
-import 'package:glide/features/authentication/cubit/auth_states.dart';
+import 'package:glide/features/authentication/presentation/cubit/auth_cubit.dart';
+import 'package:glide/features/authentication/presentation/cubit/auth_states.dart';
 import 'package:glide/gen/assets.gen.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
@@ -25,7 +22,11 @@ class AuthenticationScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final formKey = GlobalKey<FormState>();
     return BlocProvider(
-      create: (context) => AuthCubit(),
+      create: (context) => AuthCubit(
+        sendOtp: di(),
+        verifyOtp: di(),
+        signInWithGoogle: di(),
+      ),
       child: BlocBuilder<AuthCubit, AuthStates>(
         builder: (context, state) {
           return Scaffold(
@@ -60,71 +61,76 @@ class AuthenticationScreen extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: 22.h),
-                  LoadingButton(
-                    controller: RoundedLoadingButtonController(),
-                    height: 56.h,
-                    animateOnTap: false,
-                    child: Text(
-                      'Continue',
-                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            color: AppColors.whiteColor,
-                            fontWeight: FontWeight.w600,
-                          ),
-                    ),
-                    onPressed: () async {
-                      final isValid = CountryUtils.validatePhoneNumber(
-                          context
-                              .read<AuthCubit>()
-                              .phoneFormField
-                              .text
-                              .toString(),
-                          '+${context.read<AuthCubit>().countryCode}');
-
-                      if (context
-                          .read<AuthCubit>()
-                          .phoneFormField
-                          .text
-                          .isEmpty) {
-                        showSnackBar(
-                          context: context,
-                          color: Colors.red,
-                          title: 'On Snap!',
-                          message: 'Please enter your phone number',
-                        );
-                      } else if (!isValid) {
-                        showSnackBar(
-                          context: context,
-                          color: Colors.red,
-                          title: 'On Snap!',
-                          message: 'Please enter a valid phone number',
-                        );
-                      } else {
-                        await AppPreferences().setBool(PrefKeys.isLogin, true);
-                        if (context.mounted) {
-                          await AppPreferences().setString(
-                              PrefKeys.userNumber,
-                              context
-                                  .read<AuthCubit>()
-                                  .phoneFormField
-                                  .text
-                                  .toString());
-                        }
-                        if (context.mounted) {
-                          await AppPreferences().setString(
-                              PrefKeys.userCountryCode,
-                              context.read<AuthCubit>().countryCode.toString());
-                        }
-                        if (context.mounted) {
-                          ScaffoldMessenger.of(context).removeCurrentSnackBar();
-                          context.push(AppRoutes.otpScreen, extra: {
-                            'phone':
-                                context.read<AuthCubit>().phoneFormField.text,
+                  BlocListener<AuthCubit, AuthStates>(
+                    listener: (context, state) {
+                      if (state is AuthWithPhoneNumberSendOtpSuccess) {
+                        ScaffoldMessenger.of(context).removeCurrentSnackBar();
+                        context.push(
+                          AppRoutes.otpScreen,
+                          extra: {
+                            'phone': context
+                                .read<AuthCubit>()
+                                .phoneFormField
+                                .text
+                                .toString(),
                             'countryCode':
                                 context.read<AuthCubit>().countryCode,
-                          });
-                        }
+                          },
+                        );
+                      } else if (state is AuthWithPhoneNumberSendOtpError) {
+                        showSnackBar(
+                          context: context,
+                          color: Colors.red,
+                          title: 'On Snap!',
+                          message: state.error,
+                        );
                       }
                     },
+                    child: LoadingButton(
+                      controller: RoundedLoadingButtonController(),
+                      height: 56.h,
+                      animateOnTap: false,
+                      child: Text(
+                        'Continue',
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              color: AppColors.whiteColor,
+                              fontWeight: FontWeight.w600,
+                            ),
+                      ),
+                      onPressed: () async {
+                        final isValid = CountryUtils.validatePhoneNumber(
+                            context
+                                .read<AuthCubit>()
+                                .phoneFormField
+                                .text
+                                .toString(),
+                            '+${context.read<AuthCubit>().countryCode}');
+
+                        if (context
+                            .read<AuthCubit>()
+                            .phoneFormField
+                            .text
+                            .isEmpty) {
+                          showSnackBar(
+                            context: context,
+                            color: Colors.red,
+                            title: 'On Snap!',
+                            message: 'Please enter your phone number',
+                          );
+                        } else if (!isValid) {
+                          showSnackBar(
+                            context: context,
+                            color: Colors.red,
+                            title: 'On Snap!',
+                            message: 'Please enter a valid phone number',
+                          );
+                        } else {
+                          context
+                              .read<AuthCubit>()
+                              .signInWithPhoneNumberSendOtp();
+                        }
+                      },
+                    ),
                   ),
                   SizedBox(height: 14.h),
                   Text(
@@ -148,7 +154,6 @@ class AuthenticationScreen extends StatelessWidget {
                   SizedBox(height: 30.h),
                   BlocListener<AuthCubit, AuthStates>(
                     listener: (context, state) {
-                      log(state.toString());
                       if (state is AuthWithGoogleSuccess) {
                         showSnackBar(
                           context: context,
@@ -160,7 +165,7 @@ class AuthenticationScreen extends StatelessWidget {
                           if (context.mounted) {
                             ScaffoldMessenger.of(context)
                                 .removeCurrentSnackBar();
-                            context.go(AppRoutes.homeScreen);
+                            context.go(AppRoutes.layoutScreen);
                           }
                         });
                       } else if (state is AuthWithGoogleError) {
@@ -176,7 +181,7 @@ class AuthenticationScreen extends StatelessWidget {
                       height: 56.h,
                       child: ElevatedButton(
                         onPressed: () {
-                          context.read<AuthCubit>().signInWithGoogle();
+                          context.read<AuthCubit>().googleSignIn();
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.transparent,
