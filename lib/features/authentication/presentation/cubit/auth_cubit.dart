@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:glide/core/constants/prefs_keys.dart';
+import 'package:glide/core/utils/constants/prefs_keys.dart';
 import 'package:glide/core/utils/helpers/app_preferences.dart';
 import 'package:glide/features/authentication/domain/usecases/login_with_google_usecase.dart';
 import 'package:glide/features/authentication/domain/usecases/send_otp_usecase.dart';

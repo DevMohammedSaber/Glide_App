@@ -2,11 +2,10 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:glide/core/constants/prefs_keys.dart';
-import 'package:glide/core/navigation/app_routes.dart';
-import 'package:glide/core/theme/theme.dart';
+import 'package:glide/core/utils/constants/prefs_keys.dart';
+import 'package:glide/core/utils/navigation/app_routes.dart';
+import 'package:glide/core/utils/theme/app_colors.dart';
 import 'package:glide/core/utils/helpers/app_preferences.dart';
-import 'package:glide/core/widgets/custom_app_bar.dart';
 import 'package:go_router/go_router.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -15,7 +14,6 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(

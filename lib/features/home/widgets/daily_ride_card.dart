@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:glide/core/theme/theme.dart';
+import 'package:glide/core/utils/theme/app_colors.dart';
 
 class DailyRideCard extends StatelessWidget {
   const DailyRideCard({super.key});

@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:glide/core/theme/theme.dart';
+import 'package:glide/core/utils/theme/app_colors.dart';
+import 'package:glide/core/widgets/custom_app_bar.dart';
+import 'package:glide/core/widgets/custom_drawer.dart';
 import 'package:glide/features/history/screen/history_screen.dart';
 import 'package:glide/features/home/screen/home_screen.dart';
 import 'package:glide/features/layout/cubit/layout_cubit.dart';
@@ -19,6 +21,8 @@ class LayoutScreen extends StatelessWidget {
       child: BlocBuilder<LayoutCubit, int>(
         builder: (context, state) {
           return Scaffold(
+            appBar: const CustomAppBar(),
+            endDrawer: const CustomDrawer(),
             body: IndexedStack(
               index: state,
               children: const [

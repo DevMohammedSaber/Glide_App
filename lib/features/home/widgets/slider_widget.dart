@@ -1,7 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
-import 'package:glide/core/theme/theme.dart';
+import 'package:glide/core/utils/theme/app_colors.dart';
 import 'package:glide/gen/assets.gen.dart';
 
 class SliderWidget extends StatefulWidget {

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:glide/core/theme/theme.dart';
-import 'package:glide/core/widgets/custom_app_bar.dart';
+import 'package:glide/core/utils/theme/app_colors.dart';
 import 'package:glide/core/widgets/custom_empty_widget.dart';
 import 'package:glide/features/history/widgets/ticket_widget.dart';
 
@@ -13,7 +12,6 @@ class HistoryScreen extends StatelessWidget {
     return DefaultTabController(
       length: 5, // Number of tabs
       child: Scaffold(
-        appBar: const CustomAppBar(),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Column(

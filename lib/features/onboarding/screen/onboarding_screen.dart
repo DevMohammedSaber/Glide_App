@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:glide/core/constants/prefs_keys.dart';
-import 'package:glide/core/navigation/app_routes.dart';
+import 'package:glide/core/utils/constants/prefs_keys.dart';
+import 'package:glide/core/utils/navigation/app_routes.dart';
 import 'package:glide/core/utils/helpers/app_preferences.dart';
 import 'package:glide/core/widgets/custom_phone_form_field.dart';
 import 'package:glide/gen/assets.gen.dart';

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:glide/core/theme/theme.dart';
+import 'package:glide/core/utils/theme/app_colors.dart';
 
 class CustomButton extends StatelessWidget {
   const CustomButton({

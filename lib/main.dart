@@ -6,8 +6,8 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:glide/core/bloc_observer.dart';
 import 'package:glide/core/di.dart';
-import 'package:glide/core/theme/theme.dart';
-import 'package:glide/core/navigation/router.dart';
+import 'package:glide/core/utils/theme/theme.dart';
+import 'package:glide/core/utils/navigation/router.dart';
 import 'package:glide/core/utils/helpers/app_preferences.dart';
 import 'package:glide/firebase_options.dart';
 

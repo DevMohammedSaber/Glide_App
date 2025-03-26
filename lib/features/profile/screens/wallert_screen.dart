@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:glide/core/theme/theme.dart';
+import 'package:glide/core/utils/theme/app_colors.dart';
+import 'package:glide/core/widgets/custom_drawer.dart';
 import 'package:glide/features/profile/widgets/dashed_container.dart';
 import 'package:glide/gen/assets.gen.dart';
 
@@ -16,6 +17,7 @@ class WallertScreen extends StatelessWidget {
         centerTitle: false,
         title: const Text('Glide Wallet'),
       ),
+      endDrawer: const CustomDrawer(),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(

@@ -1,8 +1,8 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:glide/core/constants/prefs_keys.dart';
-import 'package:glide/core/navigation/app_routes.dart';
+import 'package:glide/core/utils/constants/prefs_keys.dart';
+import 'package:glide/core/utils/navigation/app_routes.dart';
 import 'package:glide/core/utils/helpers/app_preferences.dart';
 import 'package:glide/features/authentication/presentation/screens/auth_screen.dart';
 import 'package:glide/features/authentication/presentation/screens/otp_screen.dart';

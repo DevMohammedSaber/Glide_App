@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:glide/core/navigation/app_routes.dart';
-import 'package:glide/core/navigation/router.dart';
+import 'package:glide/core/utils/navigation/app_routes.dart';
+import 'package:glide/core/utils/navigation/router.dart';
 import 'package:glide/core/networking/status_code.dart';
 
 class AppInterceptor extends Interceptor {
