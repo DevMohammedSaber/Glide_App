@@ -33,7 +33,7 @@ class CustomTextFormField extends StatelessWidget {
           validator: validator,
           minLines: minLines,
           maxLines: minLines,
-          cursorColor: AppColors.primaryColor,
+          cursorColor: AppColors.primary(context),
           autofillHints: const [AutofillHints.name],
           autovalidateMode: AutovalidateMode.onUserInteraction,
           onTapOutside: (event) => FocusScope.of(context).unfocus(),
@@ -47,27 +47,27 @@ class CustomTextFormField extends StatelessWidget {
             fontWeight: FontWeight.w600,
           ),
           decoration: InputDecoration(
-            fillColor: AppColors.secondaryColor,
+            fillColor: AppColors.secondary(context),
             filled: true,
             hintText: hintText,
-            hintStyle: const TextStyle(
-              color: AppColors.greyColor,
+            hintStyle:  TextStyle(
+              color: AppColors.grey(context),
             ),
             focusedBorder: OutlineInputBorder(
-              borderSide: const BorderSide(
-                color: AppColors.primaryColor,
+              borderSide:  BorderSide(
+                color: AppColors.primary(context),
               ),
               borderRadius: BorderRadius.circular(12),
             ),
             enabledBorder: OutlineInputBorder(
-              borderSide: const BorderSide(
-                color: AppColors.secondaryColor,
+              borderSide:  BorderSide(
+                color: AppColors.secondary(context),
               ),
               borderRadius: BorderRadius.circular(12),
             ),
             border: OutlineInputBorder(
-              borderSide: const BorderSide(
-                color: AppColors.secondaryColor,
+              borderSide:  BorderSide(
+                color: AppColors.secondary(context),
               ),
               borderRadius: BorderRadius.circular(12),
             ),

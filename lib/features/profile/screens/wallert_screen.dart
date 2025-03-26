@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -124,7 +123,7 @@ class WallertScreen extends StatelessWidget {
                     width: 80.w,
                     height: 124.h,
                     radius: 16,
-                    bgColor: AppColors.lightGreyColor,
+                    bgColor: AppColors.lightGrey(context),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
@@ -193,14 +192,14 @@ class WallertScreen extends StatelessWidget {
                                   .labelSmall!
                                   .copyWith(
                                     fontWeight: FontWeight.w400,
-                                    color: AppColors.darkGreyColor,
+                                    color: AppColors.grey(context),
                                   ),
                             ),
                           ),
                           trailing: IconButton(
-                            icon: const Icon(
+                            icon: Icon(
                               FontAwesomeIcons.angleRight,
-                              color: AppColors.greyColor,
+                              color: AppColors.grey(context),
                               size: 20,
                             ),
                             onPressed: () {},

@@ -30,11 +30,11 @@ class HistoryScreen extends StatelessWidget {
                 height: 40.h,
                 child: TabBar(
                   indicator: BoxDecoration(
-                    color: AppColors.primaryColor,
+                    color: AppColors.primary(context),
                     borderRadius: BorderRadius.circular(50),
                   ),
-                  labelColor: AppColors.whiteColor,
-                  unselectedLabelColor: AppColors.blackColor,
+                  labelColor: Colors.white,
+                  unselectedLabelColor: AppColors.text(context),
                   dividerHeight: 0,
                   splashBorderRadius: BorderRadius.circular(15),
                   padding: EdgeInsets.zero,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:glide/core/theme/theme.dart';
 import 'package:glide/features/home/widgets/daily_ride_card.dart';
 import 'package:glide/features/home/widgets/location_chip.dart';
 import 'package:glide/features/home/widgets/services_grid_view.dart';
@@ -33,10 +34,11 @@ class HomeBody extends StatelessWidget {
           alignment: Alignment.bottomCenter,
           child: SafeArea(
             child: Container(
-              decoration: const BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-                boxShadow: [
+              decoration: BoxDecoration(
+                color: AppColors.surface(context),
+                borderRadius:
+                    const BorderRadius.vertical(top: Radius.circular(20)),
+                boxShadow: const [
                   BoxShadow(color: Colors.black26, blurRadius: 10),
                 ],
               ),
@@ -61,7 +63,7 @@ class HomeBody extends StatelessWidget {
                               child: Container(
                                 height: 5.h,
                                 decoration: BoxDecoration(
-                                  color: Colors.grey[400],
+                                  color: AppColors.grey(context),
                                   borderRadius: BorderRadius.circular(10),
                                 ),
                               ),
@@ -85,7 +87,7 @@ class HomeBody extends StatelessWidget {
                                   style: TextStyle(
                                     fontWeight: FontWeight.w500,
                                     fontSize: 14.sp,
-                                    color: Colors.black87,
+                                    color: AppColors.text(context),
                                   ),
                                 ),
                                 SizedBox(height: 16.h),
@@ -93,7 +95,7 @@ class HomeBody extends StatelessWidget {
                                   padding: EdgeInsets.symmetric(
                                       horizontal: 16.w, vertical: 12.h),
                                   decoration: BoxDecoration(
-                                    color: Colors.grey[200],
+                                    color: AppColors.lightGrey(context),
                                     borderRadius: BorderRadius.circular(12.r),
                                     boxShadow: const [
                                       BoxShadow(
@@ -105,12 +107,18 @@ class HomeBody extends StatelessWidget {
                                   ),
                                   child: Row(
                                     children: [
-                                      SvgPicture.asset(Assets.svg.search),
+                                      SvgPicture.asset(
+                                        Assets.svg.search,
+                                        colorFilter: ColorFilter.mode(
+                                          AppColors.text(context),
+                                          BlendMode.srcIn,
+                                        ),
+                                      ),
                                       SizedBox(width: 8.w),
                                       Text(
                                         'Where to go...',
                                         style: TextStyle(
-                                          color: Colors.grey[600],
+                                          color: AppColors.text(context),
                                           fontSize: 14.sp,
                                         ),
                                       ),
@@ -170,7 +178,7 @@ class HomeBody extends StatelessWidget {
                                         trailing: Container(
                                           padding: const EdgeInsets.all(10),
                                           decoration: BoxDecoration(
-                                            color: Colors.grey[200],
+                                            color: AppColors.lightGrey(context),
                                             borderRadius:
                                                 BorderRadius.circular(8),
                                           ),
@@ -191,14 +199,14 @@ class HomeBody extends StatelessWidget {
                                       subtitle: Text(
                                         'Iqaluit, NU, Canada',
                                         style: TextStyle(
-                                          color: Colors.grey[600],
+                                          color: AppColors.grey(context),
                                           fontSize: 12.sp,
                                         ),
                                       ),
                                       trailing: Container(
                                         padding: const EdgeInsets.all(10),
                                         decoration: BoxDecoration(
-                                          color: Colors.grey[200],
+                                          color: AppColors.lightGrey(context),
                                           borderRadius:
                                               BorderRadius.circular(8),
                                         ),
@@ -210,7 +218,7 @@ class HomeBody extends StatelessWidget {
                                   },
                                   separatorBuilder: (context, index) => Divider(
                                     height: 1,
-                                    color: Colors.grey[300],
+                                    color: AppColors.grey(context),
                                   ),
                                 ),
                               ],

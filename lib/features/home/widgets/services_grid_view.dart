@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:glide/core/theme/theme.dart';
 import 'package:glide/gen/assets.gen.dart';
 
 class ServicesGridView extends StatelessWidget {
@@ -76,7 +77,7 @@ class ServiceItem extends StatelessWidget {
             alignment: Alignment.center,
             margin: const EdgeInsets.symmetric(horizontal: 8),
             decoration: BoxDecoration(
-              color: Colors.grey[200],
+              color: AppColors.lightGrey(context),
               borderRadius: BorderRadius.circular(12.r),
               boxShadow: const [
                 BoxShadow(
@@ -94,6 +95,12 @@ class ServiceItem extends StatelessWidget {
                   height: 45.h,
                   child: SvgPicture.asset(
                     image,
+                    colorFilter: image == Assets.svg.more
+                        ? ColorFilter.mode(
+                            AppColors.primary(context),
+                            BlendMode.srcIn,
+                          )
+                        : null,
                   ),
                 ),
                 SizedBox(height: 10.h),

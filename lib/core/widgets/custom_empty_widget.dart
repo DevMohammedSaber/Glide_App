@@ -11,7 +11,9 @@ class CustomEmptyWidget extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Image.asset(Assets.png.empty.path),
+        Image.asset(
+          Assets.png.empty.path,
+        ),
         SizedBox(height: 16.h),
         Text(
           'Ready to get moving?',

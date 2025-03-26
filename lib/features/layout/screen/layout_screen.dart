@@ -40,7 +40,7 @@ class LayoutScreen extends StatelessWidget {
               ),
               child: BottomNavigationBar(
                 elevation: 0,
-                backgroundColor: Colors.white,
+                backgroundColor: AppColors.surface(context),
                 selectedItemColor: const Color(0xFF00B894),
                 unselectedItemColor: Colors.grey[400],
                 selectedFontSize: 14.sp,
@@ -57,8 +57,8 @@ class LayoutScreen extends StatelessWidget {
                           ? Assets.svg.homeFilled
                           : Assets.svg.homeOutlined,
                       colorFilter: state == 0
-                          ? const ColorFilter.mode(
-                              AppColors.primaryColor,
+                          ? ColorFilter.mode(
+                              AppColors.primary(context),
                               BlendMode.srcIn,
                             )
                           : null,
@@ -73,8 +73,8 @@ class LayoutScreen extends StatelessWidget {
                       width: 32.w,
                       height: 32.h,
                       colorFilter: state == 1
-                          ? const ColorFilter.mode(
-                              AppColors.primaryColor,
+                          ? ColorFilter.mode(
+                              AppColors.primary(context),
                               BlendMode.srcIn,
                             )
                           : null,
@@ -89,8 +89,8 @@ class LayoutScreen extends StatelessWidget {
                           ? Assets.svg.profileFilled
                           : Assets.svg.profile,
                       colorFilter: state == 2
-                          ? const ColorFilter.mode(
-                              AppColors.primaryColor,
+                          ? ColorFilter.mode(
+                              AppColors.primary(context),
                               BlendMode.srcIn,
                             )
                           : null,

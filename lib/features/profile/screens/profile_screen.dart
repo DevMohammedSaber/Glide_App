@@ -64,13 +64,13 @@ class ProfileScreen extends StatelessWidget {
                         '(+${AppPreferences().getString(PrefKeys.userCountryCode)}) ${AppPreferences().getString(PrefKeys.userNumber)}',
                         style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                               fontWeight: FontWeight.w400,
-                              color: AppColors.darkGreyColor,
+                              color: AppColors.grey(context),
                             ),
                       ),
                     ),
-                    trailing: const Icon(
+                    trailing: Icon(
                       FontAwesomeIcons.angleRight,
-                      color: AppColors.greyColor,
+                      color: AppColors.grey(context),
                       size: 20,
                     ),
                   ),
@@ -88,12 +88,12 @@ class ProfileScreen extends StatelessWidget {
                         return Column(
                           children: [
                             ListTile(
+                              contentPadding: EdgeInsets.zero,
                               onTap: () {
                                 if (index == 1) {
                                   context.push(AppRoutes.walletScreen);
                                 }
                               },
-                              contentPadding: EdgeInsets.zero,
                               title: Text(
                                 _items[index],
                                 style: Theme.of(context).textTheme.titleSmall,
@@ -101,12 +101,12 @@ class ProfileScreen extends StatelessWidget {
                               trailing: index == 1
                                   ? Container(
                                       decoration: BoxDecoration(
-                                        color: const Color(0xffE8E8E8),
+                                        color: AppColors.darkGrey(context),
                                         borderRadius:
                                             BorderRadius.circular(20.r),
                                       ),
                                       padding: EdgeInsets.symmetric(
-                                          horizontal: 12.w, vertical: 8.h),
+                                          horizontal: 25.w, vertical: 8.h),
                                       child: Text(
                                         '137.35\$',
                                         style: Theme.of(context)
@@ -114,16 +114,13 @@ class ProfileScreen extends StatelessWidget {
                                             .titleSmall,
                                       ),
                                     )
-                                  : IconButton(
-                                      icon: const Icon(
-                                        FontAwesomeIcons.angleRight,
-                                        color: AppColors.greyColor,
-                                        size: 20,
-                                      ),
-                                      onPressed: () {},
+                                  : Icon(
+                                      FontAwesomeIcons.angleRight,
+                                      color: AppColors.grey(context),
+                                      size: 20,
                                     ),
                             ),
-                            const Divider(color: AppColors.lightGreyColor),
+                            Divider(color: AppColors.lightGrey(context)),
                           ],
                         );
                       },

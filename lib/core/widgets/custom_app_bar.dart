@@ -1,7 +1,8 @@
-
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:glide/core/theme/theme.dart';
 import 'package:glide/gen/assets.gen.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -16,7 +17,15 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       leadingWidth: 100.w,
       leading: Padding(
         padding: const EdgeInsets.only(left: 16.0),
-        child: SvgPicture.asset(Assets.svg.darkGlideLogo, height: 24.h),
+        child: BlocBuilder<ThemeCubit, ThemeData>(
+          builder: (context, theme) {
+            return SvgPicture.asset(
+                theme.brightness == Brightness.dark
+                    ? Assets.svg.lightGlideLogo
+                    : Assets.svg.darkGlideLogo,
+                height: 24.h);
+          },
+        ),
       ),
       actions: [
         IconButton(

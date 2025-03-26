@@ -14,7 +14,8 @@ class TicketWidget extends StatefulWidget {
     this.isCornerRounded = false,
     this.shadow,
     required this.keys,
-    required this.values, required this.title,
+    required this.values,
+    required this.title,
   });
   final String title;
   final List<String> keys;
@@ -41,7 +42,7 @@ class _TicketWidgetState extends State<TicketWidget> {
         margin: widget.margin,
         decoration: BoxDecoration(
           boxShadow: widget.shadow,
-          color: Colors.grey[200],
+          color: AppColors.lightGrey(context),
           borderRadius: widget.isCornerRounded
               ? BorderRadius.circular(20.0)
               : BorderRadius.circular(0.0),
@@ -150,8 +151,8 @@ class _TicketWidgetState extends State<TicketWidget> {
                   itemBuilder: (context, index) {
                     if (index == itemCount - 1) {
                       return CustomButton(
-                        bgColor: Colors.grey[300],
-                        textColor: AppColors.blackColor,
+                        bgColor: AppColors.darkGrey(context),
+                        textColor: AppColors.text(context),
                         title: 'Rebook',
                         textStyle:
                             Theme.of(context).textTheme.bodySmall!.copyWith(
@@ -175,7 +176,7 @@ class _TicketWidgetState extends State<TicketWidget> {
                           widget.keys[adjustedIndex],
                           style:
                               Theme.of(context).textTheme.bodySmall!.copyWith(
-                                    color: AppColors.greyColor,
+                                    color: AppColors.grey(context),
                                     fontSize: 12.sp,
                                   ),
                         ),

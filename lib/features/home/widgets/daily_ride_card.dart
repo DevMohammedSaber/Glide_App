@@ -68,7 +68,7 @@ class DailyRideCard extends StatelessWidget {
             child: Text(
               'Schedule Now',
               style: TextStyle(
-                color: AppColors.secondaryColor,
+                color: AppColors.secondary(context),
                 fontWeight: FontWeight.bold,
                 fontSize: 12.sp,
               ),

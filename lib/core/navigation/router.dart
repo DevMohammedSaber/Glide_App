@@ -29,7 +29,7 @@ final GoRouter router = GoRouter(
     } else if (!isLogin) {
       return AppRoutes.authenticationScreen;
     } else {
-      return null;
+      return state.matchedLocation;
     }
   },
   routes: <RouteBase>[

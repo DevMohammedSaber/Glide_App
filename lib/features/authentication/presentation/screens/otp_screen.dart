@@ -61,7 +61,7 @@ class _OtpScreenState extends State<OtpScreen> {
                     text: TextSpan(
                       text: 'Send code again after  ',
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            color: AppColors.greyColor,
+                            color: AppColors.grey(context),
                           ),
                       children: [
                         TextSpan(
@@ -110,7 +110,7 @@ class _OtpScreenState extends State<OtpScreen> {
                                 .textTheme
                                 .bodyMedium
                                 ?.copyWith(
-                                  color: AppColors.whiteColor,
+                                  color: AppColors.text(context),
                                   fontWeight: FontWeight.w600,
                                 )),
                         onPressed: () {

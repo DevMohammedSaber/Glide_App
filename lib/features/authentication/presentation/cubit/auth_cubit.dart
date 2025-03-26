@@ -68,7 +68,11 @@ class AuthCubit extends Cubit<AuthStates> {
     emit(const AuthLoading());
     try {
       final user = await signInWithGoogle();
-      debugPrint("user: $user");
+      await AppPreferences().setBool(PrefKeys.isLogin, true);
+      await AppPreferences()
+          .setString(PrefKeys.userNumber, user.phoneNumber ?? '');
+      await AppPreferences()
+          .setString(PrefKeys.userCountryCode, countryCode.toString());
       emit(const AuthWithGoogleSuccess());
     } catch (e) {
       debugPrint("Error during Google SignIn: $e");

@@ -49,7 +49,7 @@ class _SliderWidgetState extends State<SliderWidget> {
           animate: true,
           position: currentIndex,
           decorator: DotsDecorator(
-            activeColor: AppColors.primaryColor,
+            activeColor: AppColors.primary(context),
             activeSize: const Size(18, 6),
             size: const Size(6, 6),
             activeShape: RoundedRectangleBorder(

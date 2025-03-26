@@ -93,7 +93,7 @@ class AuthenticationScreen extends StatelessWidget {
                       child: Text(
                         'Continue',
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                              color: AppColors.whiteColor,
+                              color: AppColors.text(context),
                               fontWeight: FontWeight.w600,
                             ),
                       ),
@@ -136,7 +136,7 @@ class AuthenticationScreen extends StatelessWidget {
                   Text(
                     """By proceeding, you consent to get calls, or SMS messages, including by automated means, from Glide and its affiliates to the number provided.""",
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: AppColors.greyColor,
+                          color: AppColors.grey(context),
                         ),
                   ),
                   SizedBox(height: 30.h),
@@ -190,7 +190,7 @@ class AuthenticationScreen extends StatelessWidget {
                           elevation: 0,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12.r),
-                            side: const BorderSide(color: AppColors.greyColor),
+                            side:  BorderSide(color: AppColors.grey(context)),
                           ),
                         ),
                         child: Row(

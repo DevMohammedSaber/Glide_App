@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:glide/core/theme/theme.dart';
 
 class LocationChip extends StatelessWidget {
   const LocationChip({
@@ -19,7 +20,7 @@ class LocationChip extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 8.h),
       decoration: BoxDecoration(
-        color: Colors.grey[200],
+        color: AppColors.lightGrey(context),
         borderRadius: BorderRadius.circular(8.r),
         // border: isSelected
         //     ? Border.all(
@@ -36,7 +37,7 @@ class LocationChip extends StatelessWidget {
           Text(
             label,
             style: TextStyle(
-              color: Colors.black87,
+              color: AppColors.text(context),
               fontSize: 12.sp,
               fontWeight: FontWeight.w600,
             ),
