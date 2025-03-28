@@ -33,175 +33,174 @@ class TicketWidget extends StatefulWidget {
 class _TicketWidgetState extends State<TicketWidget> {
   @override
   Widget build(BuildContext context) {
-    return ClipPath(
-      clipper: TicketClipper(),
-      child: Container(
-        width: double.infinity,
-        height: 270.h,
-        padding: widget.padding,
-        margin: widget.margin,
-        decoration: BoxDecoration(
-          boxShadow: widget.shadow,
-          color: AppColors.lightGrey(context),
-          borderRadius: widget.isCornerRounded
-              ? BorderRadius.circular(20.0)
-              : BorderRadius.circular(0.0),
-        ),
-        child: Column(
-          children: [
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    widget.title,
-                    style: Theme.of(context).textTheme.headlineSmall,
-                  ),
-                  SizedBox(height: 8.h),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Inuit Heritage Center'.toUpperCase(),
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodySmall!
-                                  .copyWith(
-                                    fontWeight: FontWeight.w600,
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
-                            ),
-                            Text(
-                              'Jan 01, 5:42pm',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodySmall!
-                                  .copyWith(
-                                    fontSize: 12.sp,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                        child: SvgPicture.asset(
-                          Assets.svg.busTrip,
-                          width: 90.w,
-                        ),
-                      ),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Conferenc...'.toUpperCase(),
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodySmall!
-                                  .copyWith(
-                                    fontWeight: FontWeight.w600,
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
-                            ),
-                            Text(
-                              'Jan 01, 5:59pm',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodySmall!
-                                  .copyWith(
-                                    fontSize: 12.sp,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
+    return Column(
+      children: [
+        ClipPath(
+          clipper: UpperTicketClipper(),
+          child: Container(
+            width: double.infinity,
+            padding: widget.padding,
+            margin: widget.margin,
+            decoration: BoxDecoration(
+              boxShadow: widget.shadow,
+              color: AppColors.lightGrey(context),
+              borderRadius: widget.isCornerRounded
+                  ? BorderRadius.circular(20.0)
+                  : BorderRadius.circular(0.0),
             ),
-            CustomDashedLine(
-              color: Colors.grey[400]!,
-            ),
-            Expanded(
-              child: Builder(builder: (context) {
-                final itemCount = ((widget.keys.length / 4).remainder(1) == 0
-                    ? widget.keys.length + 4
-                    : (widget.keys.length / 4).remainder(1) == .25
-                        ? widget.keys.length + 3
-                        : (widget.keys.length / 4).remainder(1) == .5
-                            ? widget.keys.length + 2
-                            : widget.keys.length + 1);
-                return GridView.builder(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 4,
-                    crossAxisSpacing: 5,
-                    childAspectRatio: 2,
-                  ),
-                  padding: const EdgeInsets.symmetric(vertical: 23),
-                  itemCount: itemCount,
-                  itemBuilder: (context, index) {
-                    if (index == itemCount - 1) {
-                      return CustomButton(
-                        bgColor: AppColors.darkGrey(context),
-                        textColor: AppColors.text(context),
-                        title: 'Rebook',
-                        textStyle:
-                            Theme.of(context).textTheme.bodySmall!.copyWith(
-                                  fontSize: 12.sp,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                        onPressed: () {},
-                      );
-                    }
-                    final adjustedIndex =
-                        index > widget.keys.length ? index - 1 : index;
-
-                    if (adjustedIndex >= widget.keys.length) {
-                      return const SizedBox();
-                    }
-
-                    return Column(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  widget.title,
+                  style: Theme.of(context).textTheme.headlineSmall,
+                ),
+                SizedBox(height: 8.h),
+                Row(
+                  children: [
+                    Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          widget.keys[adjustedIndex],
+                          'Inuit Heritage Center'.toUpperCase(),
                           style:
                               Theme.of(context).textTheme.bodySmall!.copyWith(
-                                    color: AppColors.grey(context),
-                                    fontSize: 12.sp,
+                                    fontWeight: FontWeight.w600,
+                                    overflow: TextOverflow.ellipsis,
                                   ),
                         ),
                         Text(
-                          widget.values[adjustedIndex],
+                          'Jan 01, 5:42pm',
                           style:
                               Theme.of(context).textTheme.bodySmall!.copyWith(
                                     fontSize: 12.sp,
-                                    fontWeight: FontWeight.w500,
+                                    fontWeight: FontWeight.w400,
                                   ),
                         ),
                       ],
-                    );
-                  },
-                );
-              }),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: SvgPicture.asset(
+                        Assets.svg.busTrip,
+                        width: 90.w,
+                      ),
+                    ),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Conferenc...'.toUpperCase(),
+                            style:
+                                Theme.of(context).textTheme.bodySmall!.copyWith(
+                                      fontWeight: FontWeight.w600,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                          ),
+                          Text(
+                            'Jan 01, 5:59pm',
+                            style:
+                                Theme.of(context).textTheme.bodySmall!.copyWith(
+                                      fontSize: 12.sp,
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ],
             ),
-          ],
+          ),
         ),
-      ),
+        CustomDashedLine(
+          color: Colors.grey[400]!,
+        ),
+        ClipPath(
+          clipper: LowerTicketClipper(),
+          child: Container(
+            width: double.infinity,
+            padding: widget.padding,
+            margin: widget.margin,
+            decoration: BoxDecoration(
+              boxShadow: widget.shadow,
+              color: AppColors.lightGrey(context),
+              borderRadius: widget.isCornerRounded
+                  ? BorderRadius.circular(20.0)
+                  : BorderRadius.circular(0.0),
+            ),
+            child: Builder(builder: (context) {
+              final itemCount = ((widget.keys.length / 4).remainder(1) == 0
+                  ? widget.keys.length + 4
+                  : (widget.keys.length / 4).remainder(1) == .25
+                      ? widget.keys.length + 3
+                      : (widget.keys.length / 4).remainder(1) == .5
+                          ? widget.keys.length + 2
+                          : widget.keys.length + 1);
+              return GridView.builder(
+                shrinkWrap: true,
+
+                physics: const NeverScrollableScrollPhysics(),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 4,
+                  crossAxisSpacing: 5,
+                  childAspectRatio: 2,
+                ),
+                // padding: const EdgeInsets.symmetric(vertical: 23),
+                itemCount: itemCount,
+                itemBuilder: (context, index) {
+                  if (index == itemCount - 1) {
+                    return CustomButton(
+                      bgColor: AppColors.darkGrey(context),
+                      textColor: AppColors.text(context),
+                      title: 'Rebook',
+                      textStyle:
+                          Theme.of(context).textTheme.bodySmall!.copyWith(
+                                fontSize: 12.sp,
+                                fontWeight: FontWeight.w600,
+                              ),
+                      onPressed: () {},
+                    );
+                  }
+                  final adjustedIndex =
+                      index > widget.keys.length ? index - 1 : index;
+
+                  if (adjustedIndex >= widget.keys.length) {
+                    return const SizedBox();
+                  }
+
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        widget.keys[adjustedIndex],
+                        style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                              color: AppColors.grey(context),
+                              fontSize: 12.sp,
+                            ),
+                      ),
+                      Text(
+                        widget.values[adjustedIndex],
+                        style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                              fontSize: 12.sp,
+                              fontWeight: FontWeight.w500,
+                            ),
+                      ),
+                    ],
+                  );
+                },
+              );
+            }),
+          ),
+        ),
+      ],
     );
   }
 }
 
-class TicketClipper extends CustomClipper<Path> {
+class UpperTicketClipper extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
     Path path = Path();
@@ -211,9 +210,29 @@ class TicketClipper extends CustomClipper<Path> {
     path.lineTo(size.width, 0.0);
 
     path.addOval(
-        Rect.fromCircle(center: Offset(0.0, size.height / 2), radius: 20.0));
-    path.addOval(Rect.fromCircle(
-        center: Offset(size.width, size.height / 2), radius: 20.0));
+        Rect.fromCircle(center: Offset(0.0, size.height), radius: 20.0));
+    path.addOval(
+        Rect.fromCircle(center: Offset(size.width, size.height), radius: 20.0));
+
+    return path;
+  }
+
+  @override
+  bool shouldReclip(CustomClipper<Path> oldClipper) => false;
+}
+
+class LowerTicketClipper extends CustomClipper<Path> {
+  @override
+  Path getClip(Size size) {
+    Path path = Path();
+
+    path.lineTo(0.0, size.height);
+    path.lineTo(size.width, size.height);
+    path.lineTo(size.width, 0.0);
+
+    path.addOval(Rect.fromCircle(center: const Offset(0.0, 0.0), radius: 20.0));
+    path.addOval(
+        Rect.fromCircle(center: Offset(size.width, 0.0), radius: 20.0));
 
     return path;
   }
@@ -238,17 +257,20 @@ class CustomDashedLine extends StatelessWidget {
         final dashSpace = 5.0;
         final dashCount = (boxWidth / (dashWidth + dashSpace)).floor();
 
-        return Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: List.generate(dashCount, (_) {
-            return SizedBox(
-              width: dashWidth,
-              height: height,
-              child: DecoratedBox(
-                decoration: BoxDecoration(color: color),
-              ),
-            );
-          }),
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: List.generate(dashCount, (_) {
+              return SizedBox(
+                width: dashWidth,
+                height: height,
+                child: DecoratedBox(
+                  decoration: BoxDecoration(color: color),
+                ),
+              );
+            }),
+          ),
         );
       },
     );

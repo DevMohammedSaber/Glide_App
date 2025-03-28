@@ -7,4 +7,5 @@ class AppRoutes {
   static const String historyScreen = '/hostortScreen';
   static const String profileScreen = '/profileScreen';
   static const String walletScreen = '/walletScreen';
+  static const String mapScreen = '/mapScreen';
 }

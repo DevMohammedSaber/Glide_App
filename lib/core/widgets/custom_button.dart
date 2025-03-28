@@ -10,7 +10,7 @@ class CustomButton extends StatelessWidget {
     this.bgColor,
     this.textColor,
     this.textStyle,
-    this.width,
+    this.width, this.child,
   });
 
   final String title;
@@ -20,6 +20,7 @@ class CustomButton extends StatelessWidget {
   final Color? bgColor;
   final Color? textColor;
   final TextStyle? textStyle;
+  final Widget? child;
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +39,7 @@ class CustomButton extends StatelessWidget {
           padding: const EdgeInsets.all(0),
         ),
         onPressed: onPressed,
-        child: Text(
+        child:child?? Text(
           title,
           style: textStyle ??
               const TextStyle(

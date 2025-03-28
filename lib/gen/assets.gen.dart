@@ -18,14 +18,27 @@ class $AssetsPngGen {
   /// File path: assets/png/apple_pay.png
   AssetGenImage get applePay => const AssetGenImage('assets/png/apple_pay.png');
 
+  /// File path: assets/png/baby.png
+  AssetGenImage get baby => const AssetGenImage('assets/png/baby.png');
+
   /// File path: assets/png/banner.png
   AssetGenImage get banner => const AssetGenImage('assets/png/banner.png');
 
   /// File path: assets/png/cash.png
   AssetGenImage get cash => const AssetGenImage('assets/png/cash.png');
 
+  /// File path: assets/png/disability.png
+  AssetGenImage get disability =>
+      const AssetGenImage('assets/png/disability.png');
+
   /// File path: assets/png/empty.png
   AssetGenImage get empty => const AssetGenImage('assets/png/empty.png');
+
+  /// File path: assets/png/luggage.png
+  AssetGenImage get luggage => const AssetGenImage('assets/png/luggage.png');
+
+  /// File path: assets/png/map_bg.png
+  AssetGenImage get mapBg => const AssetGenImage('assets/png/map_bg.png');
 
   /// File path: assets/png/mastercard.png
   AssetGenImage get mastercard =>
@@ -34,6 +47,9 @@ class $AssetsPngGen {
   /// File path: assets/png/onboarding.png
   AssetGenImage get onboarding =>
       const AssetGenImage('assets/png/onboarding.png');
+
+  /// File path: assets/png/user.png
+  AssetGenImage get user => const AssetGenImage('assets/png/user.png');
 
   /// File path: assets/png/visa.png
   AssetGenImage get visa => const AssetGenImage('assets/png/visa.png');
@@ -46,11 +62,16 @@ class $AssetsPngGen {
   List<AssetGenImage> get values => [
     addCard,
     applePay,
+    baby,
     banner,
     cash,
+    disability,
     empty,
+    luggage,
+    mapBg,
     mastercard,
     onboarding,
+    user,
     visa,
     walletCardBackground,
   ];
@@ -68,8 +89,14 @@ class $AssetsSvgGen {
   /// File path: assets/svg/bus_trip.svg
   String get busTrip => 'assets/svg/bus_trip.svg';
 
+  /// File path: assets/svg/car.svg
+  String get car => 'assets/svg/car.svg';
+
   /// File path: assets/svg/dark_glide_logo.svg
   String get darkGlideLogo => 'assets/svg/dark_glide_logo.svg';
+
+  /// File path: assets/svg/disabled_car.svg
+  String get disabledCar => 'assets/svg/disabled_car.svg';
 
   /// File path: assets/svg/elder.svg
   String get elder => 'assets/svg/elder.svg';
@@ -133,7 +160,9 @@ class $AssetsSvgGen {
     buildings,
     bus,
     busTrip,
+    car,
     darkGlideLogo,
+    disabledCar,
     elder,
     food,
     google,

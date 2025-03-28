@@ -9,6 +9,7 @@ import 'package:glide/features/authentication/presentation/screens/otp_screen.da
 import 'package:glide/features/layout/screen/layout_screen.dart';
 import 'package:glide/features/onboarding/screen/onboarding_screen.dart';
 import 'package:glide/features/profile/screens/wallert_screen.dart';
+import 'package:glide/features/schedule/presentation/screens/map_screen.dart';
 import 'package:go_router/go_router.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
@@ -65,6 +66,12 @@ final GoRouter router = GoRouter(
       path: AppRoutes.walletScreen,
       builder: (context, state) {
         return const WallertScreen();
+      },
+    ),
+    GoRoute(
+      path: AppRoutes.mapScreen,
+      builder: (context, state) {
+        return const MapScreen();
       },
     ),
   ],

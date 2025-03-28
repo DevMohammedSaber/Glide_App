@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:glide/core/utils/navigation/app_routes.dart';
 import 'package:glide/core/utils/theme/app_colors.dart';
+import 'package:go_router/go_router.dart';
 
 class DailyRideCard extends StatelessWidget {
   const DailyRideCard({super.key});
@@ -11,7 +13,7 @@ class DailyRideCard extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
       decoration: BoxDecoration(
-        color: const Color(0xFF00B894),
+        color: AppColors.primary(context),
         borderRadius: BorderRadius.circular(12.r),
         boxShadow: const [
           BoxShadow(
@@ -52,25 +54,28 @@ class DailyRideCard extends StatelessWidget {
               ),
             ],
           ),
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.h),
-            decoration: BoxDecoration(
-              color: const Color(0xFF00EBC3),
-              borderRadius: BorderRadius.circular(8.r),
-              boxShadow: const [
-                BoxShadow(
-                  color: Colors.black12,
-                  blurRadius: 10,
-                  offset: Offset(0, 2),
+          InkWell(
+            onTap: () => context.push(AppRoutes.mapScreen),
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.h),
+              decoration: BoxDecoration(
+                color: const Color(0xFF00EBC3),
+                borderRadius: BorderRadius.circular(8.r),
+                boxShadow: const [
+                  BoxShadow(
+                    color: Colors.black12,
+                    blurRadius: 10,
+                    offset: Offset(0, 2),
+                  ),
+                ],
+              ),
+              child: Text(
+                'Schedule Now',
+                style: TextStyle(
+                  color: AppColors.secondary(context),
+                  fontWeight: FontWeight.bold,
+                  fontSize: 12.sp,
                 ),
-              ],
-            ),
-            child: Text(
-              'Schedule Now',
-              style: TextStyle(
-                color: AppColors.secondary(context),
-                fontWeight: FontWeight.bold,
-                fontSize: 12.sp,
               ),
             ),
           ),
