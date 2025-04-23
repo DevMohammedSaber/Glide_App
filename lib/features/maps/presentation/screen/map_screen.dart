@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:glide/features/maps/presentation/cubit/map_cubit.dart';
 import 'package:glide/features/maps/presentation/widgets/map_widget.dart';
-import 'package:glide/features/booking_ride/presentation/screens/schedule_step_three.dart';
-import 'package:glide/features/booking_ride/presentation/screens/schedule_step_two.dart';
 import 'package:glide/features/schedule/presentation/screens/schedule_step_four.dart';
 import 'package:glide/features/schedule/presentation/screens/schedule_step_one.dart';
+import 'package:glide/features/schedule/presentation/screens/schedule_step_three.dart';
+import 'package:glide/features/schedule/presentation/screens/schedule_step_two.dart';
 
 class MapScreen extends StatefulWidget {
   const MapScreen({super.key});

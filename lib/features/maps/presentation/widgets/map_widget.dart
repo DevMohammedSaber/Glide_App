@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:glide/features/maps/presentation/cubit/map_cubit.dart';
@@ -34,9 +36,13 @@ class _MapWidgetState extends State<MapWidget> {
               onMapCreated: (controller) {
                 _controller.complete(controller);
               },
+              gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{
+                Factory<OneSequenceGestureRecognizer>(
+                  () => EagerGestureRecognizer(),
+                ),
+              },
               markers: state.markers,
               polylines: state.polylines,
-              
               onTap: (position) {
                 context.read<MapCubit>().addMarker(position);
               },

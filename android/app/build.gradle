@@ -7,7 +7,7 @@ plugins {
 
 android {
     namespace = "com.adamexpress.glide"
-    compileSdk = flutter.compileSdkVersion
+    compileSdk = 35
     ndkVersion = flutter.ndkVersion
 
     compileOptions {
@@ -35,12 +35,9 @@ android {
             shrinkResources true
             minifyEnabled true
         }
-//        debug{
-//            signingConfig signingConfigs.debug
-//             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-//            shrinkResources true
-//            minifyEnabled true
-//        }
+       debug{
+           signingConfig signingConfigs.debug
+       }
     }
 }
 
