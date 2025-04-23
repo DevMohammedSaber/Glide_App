@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:glide/core/utils/navigation/app_routes.dart';
 import 'package:glide/core/utils/theme/app_colors.dart';
-import 'package:go_router/go_router.dart';
 
 class DailyRideCard extends StatelessWidget {
   const DailyRideCard({super.key});
@@ -55,7 +53,7 @@ class DailyRideCard extends StatelessWidget {
             ],
           ),
           InkWell(
-            onTap: () => context.push(AppRoutes.mapScreen),
+            onTap: () {},
             child: Container(
               padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.h),
               decoration: BoxDecoration(

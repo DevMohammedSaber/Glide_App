@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:glide/core/utils/constants/prefs_keys.dart';
 import 'package:glide/core/utils/navigation/app_routes.dart';
@@ -7,9 +5,9 @@ import 'package:glide/core/utils/helpers/app_preferences.dart';
 import 'package:glide/features/authentication/presentation/screens/auth_screen.dart';
 import 'package:glide/features/authentication/presentation/screens/otp_screen.dart';
 import 'package:glide/features/layout/screen/layout_screen.dart';
+import 'package:glide/features/maps/presentation/screen/map_screen.dart';
 import 'package:glide/features/onboarding/screen/onboarding_screen.dart';
 import 'package:glide/features/profile/screens/wallert_screen.dart';
-import 'package:glide/features/schedule/presentation/screens/map_screen.dart';
 import 'package:go_router/go_router.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
@@ -18,7 +16,6 @@ final GoRouter router = GoRouter(
   initialLocation: AppRoutes.layoutScreen,
   navigatorKey: navigatorKey,
   redirect: (context, state) async {
-    log(state.matchedLocation);
     if (state.matchedLocation == AppRoutes.otpScreen) {
       return state.matchedLocation;
     }

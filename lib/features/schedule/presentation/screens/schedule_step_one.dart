@@ -30,6 +30,7 @@ class ScheduleStepOne extends StatelessWidget {
           expand: false,
           initialChildSize: 0.97,
           maxChildSize: 0.97,
+          minChildSize: 0.05,
           builder: (context, scrollController) {
             return Stack(
               children: [
@@ -69,7 +70,7 @@ class ScheduleStepOne extends StatelessWidget {
                             children: [
                               IconButton(
                                 onPressed: () => context.pop(),
-                                icon: const Icon( Icons.close),
+                                icon: const Icon(Icons.close),
                                 color: AppColors.text(context),
                               ),
                               SizedBox(width: 14.w),
@@ -180,12 +181,7 @@ class ScheduleStepOne extends StatelessWidget {
                                 );
                               }
                               return ListTile(
-                                onTap: () {
-                                  pageController.nextPage(
-                                      duration:
-                                          const Duration(milliseconds: 500),
-                                      curve: Curves.easeInOut);
-                                },
+                                onTap: () {},
                                 contentPadding: const EdgeInsets.all(0),
                                 title: Text(
                                   '192 Queen Elizabeth',

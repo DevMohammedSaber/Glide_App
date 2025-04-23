@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:glide/core/utils/constants/prefs_keys.dart';
 import 'package:glide/core/utils/navigation/app_routes.dart';
 import 'package:glide/core/utils/helpers/app_preferences.dart';
@@ -14,38 +13,43 @@ class OnboardingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(
-              width: ScreenUtil().screenWidth,
-              height: 617.h,
-              child: Image.asset(Assets.png.onboarding.path),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(16),
-              child: Text(
-                'Get started with your account \nand enjoy the experience! 🎉',
-                style: Theme.of(context).textTheme.headlineMedium,
+        child: SizedBox(
+          width: double.infinity,
+          height: double.infinity,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(
+                child: Image.asset(
+                  Assets.png.onboarding.path,
+                  fit: BoxFit.cover,
+                ),
               ),
-            ),
-            Hero(
-              tag: 'phone',
-              child: CustomPhoneFormField(
-                readOnly: true,
-                enablePicker: false,
-                countryCode: '1',
-                selectedCountry: "CA",
+              Padding(
                 padding: const EdgeInsets.all(16),
-                onTap: () async {
-                  await AppPreferences().setBool(PrefKeys.isOnboarding, true);
-                  if (context.mounted) {
-                    context.go(AppRoutes.authenticationScreen);
-                  }
-                },
+                child: Text(
+                  'Get started with your account \nand enjoy the experience! 🎉',
+                  style: Theme.of(context).textTheme.headlineMedium,
+                ),
               ),
-            ),
-          ],
+              Hero(
+                tag: 'phone',
+                child: CustomPhoneFormField(
+                  readOnly: true,
+                  enablePicker: false,
+                  countryCode: '1',
+                  selectedCountry: "CA",
+                  padding: const EdgeInsets.all(16),
+                  onTap: () async {
+                    await AppPreferences().setBool(PrefKeys.isOnboarding, true);
+                    if (context.mounted) {
+                      context.go(AppRoutes.authenticationScreen);
+                    }
+                  },
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

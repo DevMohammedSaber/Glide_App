@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:glide/core/utils/navigation/app_routes.dart';
 import 'package:glide/core/utils/theme/app_colors.dart';
 import 'package:glide/gen/assets.gen.dart';
+import 'package:go_router/go_router.dart';
 
 class ServicesGridView extends StatelessWidget {
   const ServicesGridView({super.key});
@@ -18,6 +20,7 @@ class ServicesGridView extends StatelessWidget {
               ServiceItem(
                 image: Assets.svg.taxi,
                 label: 'Taxi',
+                onTap: () => context.push(AppRoutes.mapScreen),
               ),
               ServiceItem(
                 image: Assets.svg.bus,
@@ -63,71 +66,79 @@ class ServicesGridView extends StatelessWidget {
 
 class ServiceItem extends StatelessWidget {
   const ServiceItem(
-      {super.key, required this.image, required this.label, this.title});
+      {super.key,
+      required this.image,
+      required this.label,
+      this.title,
+      this.onTap});
   final String image;
   final String label;
   final String? title;
+  final void Function()? onTap;
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: Column(
-        children: [
-          Container(
-            height: title == null ? 110.h : 82.h,
-            alignment: Alignment.center,
-            margin: const EdgeInsets.symmetric(horizontal: 8),
-            decoration: BoxDecoration(
-              color: AppColors.lightGrey(context),
-              borderRadius: BorderRadius.circular(12.r),
-              boxShadow: const [
-                BoxShadow(
-                  color: Colors.black12,
-                  blurRadius: 4,
-                  offset: Offset(0, 2),
-                ),
-              ],
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Spacer(flex: 3),
-                SizedBox(
-                  height: 45.h,
-                  child: SvgPicture.asset(
-                    image,
-                    colorFilter: image == Assets.svg.more
-                        ? ColorFilter.mode(
-                            AppColors.primary(context),
-                            BlendMode.srcIn,
-                          )
-                        : null,
+      child: GestureDetector(
+        onTap: onTap,
+        child: Column(
+          children: [
+            Container(
+              height: title == null ? 110.h : 82.h,
+              alignment: Alignment.center,
+              margin: const EdgeInsets.symmetric(horizontal: 8),
+              decoration: BoxDecoration(
+                color: AppColors.lightGrey(context),
+                borderRadius: BorderRadius.circular(12.r),
+                boxShadow: const [
+                  BoxShadow(
+                    color: Colors.black12,
+                    blurRadius: 4,
+                    offset: Offset(0, 2),
                   ),
-                ),
-                SizedBox(height: 10.h),
-                if (title == null)
-                  Text(
-                    label,
-                    style: TextStyle(
-                      fontSize: 16.sp,
-                      fontWeight: FontWeight.w500,
+                ],
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Spacer(flex: 3),
+                  SizedBox(
+                    height: 45.h,
+                    child: SvgPicture.asset(
+                      image,
+                      colorFilter: image == Assets.svg.more
+                          ? ColorFilter.mode(
+                              AppColors.primary(context),
+                              BlendMode.srcIn,
+                            )
+                          : null,
                     ),
                   ),
-                const Spacer(),
-              ],
-            ),
-          ),
-          if (title != null)
-            Padding(
-              padding: const EdgeInsets.only(top: 10),
-              child: Text(
-                title!,
-                style: TextStyle(
-                  fontSize: 16.sp,
-                  fontWeight: FontWeight.w500,
-                ),
+                  SizedBox(height: 10.h),
+                  if (title == null)
+                    Text(
+                      label,
+                      style: TextStyle(
+                        fontSize: 16.sp,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  const Spacer(),
+                ],
               ),
             ),
-        ],
+            if (title != null)
+              Padding(
+                padding: const EdgeInsets.only(top: 10),
+                child: Text(
+                  title!,
+                  style: TextStyle(
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ),
+          ],
+        ),
       ),
     );
   }
