@@ -190,7 +190,7 @@ class AuthenticationScreen extends StatelessWidget {
                           elevation: 0,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12.r),
-                            side:  BorderSide(color: AppColors.grey(context)),
+                            side: BorderSide(color: AppColors.grey(context)),
                           ),
                         ),
                         child: Row(

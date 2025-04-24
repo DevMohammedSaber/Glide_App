@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:glide/core/utils/theme/app_colors.dart';
 
 class CustomTextFormField extends StatelessWidget {
   const CustomTextFormField({
     super.key,
     this.icon,
-    this.hintText,
+    this.labelText,
     this.validator,
     this.keyboardType,
     this.onChanged,
@@ -14,7 +15,7 @@ class CustomTextFormField extends StatelessWidget {
     this.maxLines = 1,
     this.controller,
   });
-  final String? hintText;
+  final String? labelText;
   final String? Function(String?)? validator;
   final TextInputType? keyboardType;
   final IconData? icon;
@@ -25,7 +26,6 @@ class CustomTextFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      textAlign: TextAlign.center,
       textAlignVertical: TextAlignVertical.center,
       controller: controller,
       onChanged: onChanged,
@@ -42,18 +42,24 @@ class CustomTextFormField extends StatelessWidget {
               FilteringTextInputFormatter.digitsOnly,
             ]
           : [],
-      style: const TextStyle(
-        fontSize: 14,
+      style: TextStyle(
+        fontSize: 14.sp,
         fontWeight: FontWeight.w600,
       ),
       decoration: InputDecoration(
-        hintText: hintText,
-        hintStyle: TextStyle(
+        labelText: labelText,
+        labelStyle: TextStyle(
           color: AppColors.grey(context),
         ),
+        prefixIcon: icon != null
+            ? Icon(
+                icon,
+                color: AppColors.grey(context),
+              )
+            : null,
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(
-            color: AppColors.grey(context),
+            color: AppColors.primary(context),
           ),
           borderRadius: BorderRadius.circular(12),
         ),

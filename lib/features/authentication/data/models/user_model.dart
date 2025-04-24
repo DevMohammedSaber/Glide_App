@@ -1,6 +1,6 @@
 import 'package:glide/features/authentication/domain/entities/user_entity.dart';
 
-class AuthModel extends AuthEntity {
+class AuthModel extends UserEntity {
   const AuthModel({
     required super.uid,
     required super.email,

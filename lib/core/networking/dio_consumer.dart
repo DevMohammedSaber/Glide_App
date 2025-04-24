@@ -1,4 +1,4 @@
-import 'dart:convert';
+import 'dart:developer';
 
 import 'package:dio/dio.dart';
 import 'package:glide/core/networking/api_consumer.dart';
@@ -115,19 +115,17 @@ class DioConsumer implements ApiConsumer {
 
   /// Converts the response to JSON if necessary.
   dynamic _handleResponseAsJson(Response<dynamic> response) {
-    return response.data is String
-        ? jsonDecode(response.data.toString())
-        : response.data as Map<String, dynamic>;
+    return response;
   }
 
   /// Handles Dio-specific errors and returns a [Failure] object.
   Failure _handleError(DioException exception) {
     String errorMessage = 'An error occurred. Please try again later.';
-
+    log(exception.response.toString());
     if (exception.response != null) {
       final errorResponse = exception.response?.data;
       if (errorResponse is Map) {
-        errorMessage = errorResponse['response_message'] ?? errorMessage;
+        errorMessage = errorResponse['message'] ?? errorMessage;
       }
     }
 

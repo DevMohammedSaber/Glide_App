@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:glide/core/networking/app_apis.dart';
 import 'package:glide/features/maps/presentation/widgets/custom_marker.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
@@ -58,7 +59,7 @@ class MapCubit extends Cubit<MapStates> {
             _selectedPoints[1].latitude, _selectedPoints[1].longitude),
         mode: TravelMode.driving,
       ),
-      googleApiKey: "AIzaSyDbeg4RQW5M5LL7P-2LKaVjOnsMghPDR9o",
+      googleApiKey: AppApis.googleKey,
     );
 
     final points =

@@ -63,8 +63,7 @@ class Failure extends Equatable {
 
 /// Thrown when data fetching fails.
 class FetchDataException extends Failure {
-  const FetchDataException(String message)
-      : super(message: message);
+  const FetchDataException(String message) : super(message: message);
 
   factory FetchDataException.timeout() =>
       const FetchDataException('Request timed out. Please try again.');
@@ -72,8 +71,7 @@ class FetchDataException extends Failure {
 
 /// Thrown when a bad request is made.
 class BadRequestException extends Failure {
-  const BadRequestException(String message)
-      : super(message: message);
+  const BadRequestException(String message) : super(message: message);
 
   factory BadRequestException.invalidData() =>
       const BadRequestException('Invalid data provided.');
@@ -81,8 +79,7 @@ class BadRequestException extends Failure {
 
 /// Thrown when the user is unauthorized.
 class UnauthorizedException extends Failure {
-  const UnauthorizedException(String message)
-      : super(message: message);
+  const UnauthorizedException(String message) : super(message: message);
 
   factory UnauthorizedException.invalidToken() =>
       const UnauthorizedException('Invalid or expired token.');
@@ -90,8 +87,7 @@ class UnauthorizedException extends Failure {
 
 /// Thrown when a resource is not found.
 class NotFoundException extends Failure {
-  const NotFoundException(String message)
-      : super(message: message);
+  const NotFoundException(String message) : super(message: message);
 
   factory NotFoundException.resourceNotFound() =>
       const NotFoundException('The requested resource was not found.');
@@ -99,8 +95,7 @@ class NotFoundException extends Failure {
 
 /// Thrown when a conflict occurs.
 class ConflictException extends Failure {
-  const ConflictException(String message)
-      : super(message: message);
+  const ConflictException(String message) : super(message: message);
 
   factory ConflictException.duplicateEntry() =>
       const ConflictException('Duplicate entry detected.');
@@ -108,8 +103,7 @@ class ConflictException extends Failure {
 
 /// Thrown when there is an internal server error.
 class InternalServerErrorException extends Failure {
-  const InternalServerErrorException(String message)
-      : super(message: message);
+  const InternalServerErrorException(String message) : super(message: message);
 
   factory InternalServerErrorException.serverDown() =>
       const InternalServerErrorException('The server is currently down.');
@@ -117,8 +111,7 @@ class InternalServerErrorException extends Failure {
 
 /// Thrown when there is no internet connection.
 class NoInternetConnectionException extends Failure {
-  const NoInternetConnectionException(String message)
-      : super(message: message);
+  const NoInternetConnectionException(String message) : super(message: message);
 
   factory NoInternetConnectionException.noNetwork() =>
       const NoInternetConnectionException('No internet connection.');
@@ -126,8 +119,7 @@ class NoInternetConnectionException extends Failure {
 
 /// Thrown when an unexpected error occurs.
 class UnexpectedFailure extends Failure {
-  const UnexpectedFailure(String message)
-      : super(message: message);
+  const UnexpectedFailure(String message) : super(message: message);
 
   factory UnexpectedFailure.unknown() =>
       const UnexpectedFailure('An unexpected error occurred.');
@@ -135,8 +127,7 @@ class UnexpectedFailure extends Failure {
 
 /// Thrown when a server-related error occurs.
 class ServerFailure extends Failure {
-  const ServerFailure(String message)
-      : super(message: message);
+  const ServerFailure(String message) : super(message: message);
 
   factory ServerFailure.generic() =>
       const ServerFailure('An error occurred on the server.');
@@ -144,8 +135,7 @@ class ServerFailure extends Failure {
 
 /// Thrown when reading a file fails.
 class ReadFileFailure extends Failure {
-  const ReadFileFailure(String message)
-      : super(message: message);
+  const ReadFileFailure(String message) : super(message: message);
 
   factory ReadFileFailure.fileNotFound() =>
       const ReadFileFailure('The file could not be found.');
@@ -153,8 +143,7 @@ class ReadFileFailure extends Failure {
 
 /// Thrown when a cache-related error occurs.
 class CacheFailure extends Failure {
-  const CacheFailure(String message)
-      : super(message: message);
+  const CacheFailure(String message) : super(message: message);
 
   factory CacheFailure.cacheReadError() =>
       const CacheFailure('Failed to read from cache.');

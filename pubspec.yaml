@@ -43,6 +43,8 @@ dependencies:
   flutter_polyline_points: ^2.1.0
   widget_to_marker: ^1.0.6
   google_maps_flutter: ^2.12.1
+  phone_form_field: ^10.0.6
+  flutter_secure_storage: ^4.2.1
   
 dev_dependencies:
   flutter_test:

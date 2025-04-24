@@ -4,7 +4,9 @@ import 'package:glide/core/utils/navigation/app_routes.dart';
 import 'package:glide/core/utils/helpers/app_preferences.dart';
 import 'package:glide/features/authentication/presentation/screens/auth_screen.dart';
 import 'package:glide/features/authentication/presentation/screens/otp_screen.dart';
+import 'package:glide/features/authentication/presentation/screens/register_screen.dart';
 import 'package:glide/features/layout/screen/layout_screen.dart';
+import 'package:glide/features/login/presentation/screens/login_screen.dart';
 import 'package:glide/features/maps/presentation/screen/map_screen.dart';
 import 'package:glide/features/onboarding/screen/onboarding_screen.dart';
 import 'package:glide/features/profile/screens/wallert_screen.dart';
@@ -16,19 +18,31 @@ final GoRouter router = GoRouter(
   initialLocation: AppRoutes.layoutScreen,
   navigatorKey: navigatorKey,
   redirect: (context, state) async {
-    if (state.matchedLocation == AppRoutes.otpScreen) {
-      return state.matchedLocation;
-    }
+    const publicRoutes = {
+      AppRoutes.onboardingScreen,
+      AppRoutes.loginScreen,
+      AppRoutes.registrationScreen,
+      AppRoutes.authenticationScreen,
+      AppRoutes.otpScreen,
+    };
+
     final isOnboarding =
         AppPreferences().getBool(PrefKeys.isOnboarding) ?? false;
     final isLogin = AppPreferences().getBool(PrefKeys.isLogin) ?? false;
+
+    // Allow public routes without redirect
+    if (publicRoutes.contains(state.matchedLocation)) {
+      return null;
+    }
+
+    // Redirect logic
     if (!isOnboarding) {
       return AppRoutes.onboardingScreen;
     } else if (!isLogin) {
-      return AppRoutes.authenticationScreen;
-    } else {
-      return state.matchedLocation;
+      return AppRoutes.loginScreen;
     }
+    debugPrint("Navigating to: ${state.matchedLocation}");
+    return null; // allow navigation
   },
   routes: <RouteBase>[
     GoRoute(
@@ -41,6 +55,18 @@ final GoRouter router = GoRouter(
       path: AppRoutes.authenticationScreen,
       builder: (context, state) {
         return const AuthenticationScreen();
+      },
+    ),
+    GoRoute(
+      path: AppRoutes.registrationScreen,
+      builder: (context, state) {
+        return const RegisterScreen();
+      },
+    ),
+    GoRoute(
+      path: AppRoutes.loginScreen,
+      builder: (context, state) {
+        return const LoginScreen();
       },
     ),
     GoRoute(

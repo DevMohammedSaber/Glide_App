@@ -4,5 +4,5 @@ import 'package:glide/features/authentication/domain/repositories/auth_repo.dart
 class GoogleSignInUseCase {
   final AuthRepository repository;
   GoogleSignInUseCase(this.repository);
-  Future<AuthEntity> call() => repository.signInWithGoogle();
+  Future<UserEntity> call() => repository.signInWithGoogle();
 }
