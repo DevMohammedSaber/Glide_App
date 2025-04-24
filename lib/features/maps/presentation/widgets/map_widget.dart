@@ -15,7 +15,10 @@ class MapWidget extends StatefulWidget {
   State<MapWidget> createState() => _MapWidgetState();
 }
 
-class _MapWidgetState extends State<MapWidget> {
+class _MapWidgetState extends State<MapWidget>
+    with AutomaticKeepAliveClientMixin {
+  @override
+  bool get wantKeepAlive => true;
   final Completer<GoogleMapController> _controller =
       Completer<GoogleMapController>();
 
@@ -29,6 +32,7 @@ class _MapWidgetState extends State<MapWidget> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return BlocListener<MapCubit, MapStates>(
       listener: (context, state) {
         if (state is MapLoadedState) {

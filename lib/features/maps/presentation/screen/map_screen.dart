@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:glide/core/di.dart';
+import 'package:glide/features/maps/presentation/cubit/booking_cubit.dart';
 import 'package:glide/features/maps/presentation/cubit/map_cubit.dart';
 import 'package:glide/features/maps/presentation/widgets/custom_slider.dart';
 import 'package:glide/features/maps/presentation/widgets/map_widget.dart';
@@ -43,6 +45,9 @@ class _MapScreenState extends State<MapScreen> {
       providers: [
         BlocProvider(
           create: (context) => MapCubit(),
+        ),
+        BlocProvider(
+          create: (context) => BookingCubit(bookingUsecase: di()),
         ),
       ],
       child: const Scaffold(

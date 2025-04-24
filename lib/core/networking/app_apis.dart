@@ -7,4 +7,5 @@ class AppApis {
   static const String register = '$baseurl/auth/register';
   static const String login = '$baseurl/auth/login';
   static const String refreshToken = '$baseurl/auth/refresh';
+  static const String booking = '$baseurl/auth//taxi/ride/book';
 }

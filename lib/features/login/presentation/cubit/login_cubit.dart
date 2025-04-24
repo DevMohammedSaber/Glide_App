@@ -10,7 +10,7 @@ import 'package:rounded_loading_button_plus/rounded_loading_button.dart';
 class LoginCubit extends Cubit<LoginStates> {
   final LoginUsecase loginUsecase;
   final _tokenStorage = TokenStorage();
-  LoginCubit(this.loginUsecase) : super(const LoginStateInitial());
+  LoginCubit({required this.loginUsecase}) : super(const LoginStateInitial());
   final btnController = RoundedLoadingButtonController();
 
   final TextEditingController emailFormField = TextEditingController();

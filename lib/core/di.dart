@@ -17,6 +17,12 @@ import 'package:glide/features/login/data/repositories/login_repo_impl.dart';
 import 'package:glide/features/login/domain/repositories/login_repo.dart';
 import 'package:glide/features/login/domain/usecases/login_usecase.dart';
 import 'package:glide/features/login/presentation/cubit/login_cubit.dart';
+import 'package:glide/features/maps/data/datasources/booking_remote_datasource.dart';
+import 'package:glide/features/maps/data/datasources/booking_remote_datasource_impl.dart';
+import 'package:glide/features/maps/data/repositories/booking_repo_impl.dart';
+import 'package:glide/features/maps/domain/repositories/booking_repo.dart';
+import 'package:glide/features/maps/domain/usecases/booking_usecase.dart';
+import 'package:glide/features/maps/presentation/cubit/booking_cubit.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 final di = GetIt.instance;
@@ -47,6 +53,14 @@ void configureDependencies() {
   );
   di.registerLazySingleton<LoginUsecase>(() => LoginUsecase(di()));
 
+   di.registerLazySingleton<BookingRepository>(
+      () => BookingRepositoryImpl(di<BookingRemoteDataSource>()));
+  di.registerLazySingleton<BookingRemoteDataSource>(
+    () => BookingRemoteDataSourceImpl(di<DioConsumer>()),
+  );
+  di.registerLazySingleton<BookingUsecase>(() => BookingUsecase(di()));
+
+
   di.registerLazySingleton(() => SendOtpUseCase(di()));
   di.registerLazySingleton(() => VerifyOtpUseCase(di()));
   di.registerLazySingleton(() => GoogleSignInUseCase(di()));
@@ -58,6 +72,9 @@ void configureDependencies() {
       ));
 
   di.registerFactory(() => LoginCubit(
-        di(),
+        loginUsecase: di(),
+      ));
+  di.registerFactory(() => BookingCubit(
+        bookingUsecase: di(),
       ));
 }

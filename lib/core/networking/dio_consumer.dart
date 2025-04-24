@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:dio/dio.dart';
 import 'package:glide/core/networking/api_consumer.dart';
 import 'package:glide/core/networking/app_interceptor.dart';
@@ -121,7 +119,6 @@ class DioConsumer implements ApiConsumer {
   /// Handles Dio-specific errors and returns a [Failure] object.
   Failure _handleError(DioException exception) {
     String errorMessage = 'An error occurred. Please try again later.';
-    log(exception.response.toString());
     if (exception.response != null) {
       final errorResponse = exception.response?.data;
       if (errorResponse is Map) {

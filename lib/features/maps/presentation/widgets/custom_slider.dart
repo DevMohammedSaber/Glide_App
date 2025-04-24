@@ -5,8 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:glide/core/utils/helpers/snack_bar.dart';
 import 'package:glide/core/utils/theme/app_colors.dart';
-import 'package:glide/core/widgets/custom_button.dart';
+import 'package:glide/core/widgets/loading_button.dart';
+import 'package:glide/features/maps/presentation/cubit/booking_cubit.dart';
+import 'package:glide/features/maps/presentation/cubit/booking_states.dart';
 import 'package:glide/features/maps/presentation/cubit/map_cubit.dart';
 import 'package:glide/features/maps/presentation/cubit/map_states.dart';
 import 'package:glide/features/schedule/presentation/cubit/selection_cubit.dart';
@@ -27,6 +30,7 @@ class _CustomSliderState extends State<CustomSlider> {
   @override
   Widget build(BuildContext context) {
     final cubit = context.read<MapCubit>();
+    final bookingCubit = context.read<BookingCubit>();
     return Stack(
       children: [
         Positioned(
@@ -248,45 +252,6 @@ class _CustomSliderState extends State<CustomSlider> {
                               ],
                             ),
                             SizedBox(height: 16.h),
-                            // Row(
-                            //   children: [
-                            // Text(
-                            //   "Recommended for you",
-                            //   style: TextStyle(
-                            //     fontWeight: FontWeight.w500,
-                            //     fontSize: 16.sp,
-                            //     color: AppColors.text(context),
-                            //   ),
-                            // ),
-                            // const Spacer(),
-                            //     SizedBox(
-                            //       height: 20.h,
-                            //       child: ListView.builder(
-                            //         shrinkWrap: true,
-                            //         itemCount: 4,
-                            //         scrollDirection: Axis.horizontal,
-                            //         itemBuilder: (context, index) {
-                            //           return Row(
-                            //             mainAxisSize: MainAxisSize.min,
-                            //             children: [
-                            //               Image.asset(icons[index]),
-                            //               SizedBox(width: 6.w),
-                            //               Text(
-                            //                 iconsValues[index],
-                            //                 style: TextStyle(
-                            //                   color: AppColors.text(context),
-                            //                   fontSize: 16.sp,
-                            //                   fontWeight: FontWeight.w700,
-                            //                 ),
-                            //               ),
-                            //               SizedBox(width: 8.w),
-                            //             ],
-                            //           );
-                            //         },
-                            //       ),
-                            //     ),
-                            //   ],
-                            // ),
                             SizedBox(height: 16.h),
                             BlocProvider(
                               create: (context) => SingleSelectionCubit(),
@@ -471,11 +436,52 @@ class _CustomSliderState extends State<CustomSlider> {
                               ),
                             ),
                             SizedBox(height: 16.h),
-                            CustomButton(
-                              width: double.maxFinite,
-                              textColor: Colors.white,
-                              title: 'Continue',
-                              onPressed: () {},
+                            BlocListener<BookingCubit, BookingStates>(
+                              listener: (context, state) {
+                                if (state is BookingSuccessState) {
+                                  showSnackBar(
+                                    context: context,
+                                    color: Colors.green,
+                                    title: 'Congrats!',
+                                    message: "Booking Successfully",
+                                  );
+                                } else if (state is BookingErrorState) {
+                                  showSnackBar(
+                                    context: context,
+                                    color: Colors.red,
+                                    title: 'On Snap!',
+                                    message: state.message,
+                                  );
+                                }
+                              },
+                              child: LoadingButton(
+                                controller: bookingCubit.btnController,
+                                child: const Text(
+                                  'Book Now',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                onPressed: () {
+                                  if (cubit.selectedPoints.length > 1) {
+                                    bookingCubit.booking(
+                                        dropoffLocation:
+                                            cubit.selectedPoints[0],
+                                        pickupLocation:
+                                            cubit.selectedPoints[1]);
+                                  } else {
+                                    showSnackBar(
+                                      context: context,
+                                      color: Colors.red,
+                                      title: 'On Snap!',
+                                      message:
+                                          "Please select pick up and drop off locations!",
+                                    );
+                                    bookingCubit.btnController.stop();
+                                    bookingCubit.btnController.reset();
+                                  }
+                                },
+                              ),
                             ),
                           ],
                         ),

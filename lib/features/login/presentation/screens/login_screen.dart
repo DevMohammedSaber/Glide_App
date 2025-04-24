@@ -20,7 +20,7 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => LoginCubit(
-        di(),
+        loginUsecase: di(),
       ),
       child: BlocBuilder<LoginCubit, LoginStates>(
         builder: (context, state) {
