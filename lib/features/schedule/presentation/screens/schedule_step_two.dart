@@ -10,9 +10,7 @@ import 'package:glide/features/schedule/presentation/cubit/counter_cubit.dart';
 class ScheduleStepTwo extends StatefulWidget {
   const ScheduleStepTwo({
     super.key,
-    required this.pageController,
   });
-  final PageController pageController;
 
   @override
   State<ScheduleStepTwo> createState() => _ScheduleStepTwoState();
@@ -77,11 +75,7 @@ class _ScheduleStepTwoState extends State<ScheduleStepTwo> {
                           Row(
                             children: [
                               IconButton(
-                                onPressed: () =>
-                                    widget.pageController.previousPage(
-                                  duration: const Duration(milliseconds: 300),
-                                  curve: Curves.easeInOut,
-                                ),
+                                onPressed: () {},
                                 icon: Icon(Platform.isIOS
                                     ? Icons.arrow_back_ios
                                     : Icons.arrow_back),
@@ -242,10 +236,7 @@ class _ScheduleStepTwoState extends State<ScheduleStepTwo> {
                               ),
                             ),
                             onPressed: () {
-                              widget.pageController.nextPage(
-                                duration: const Duration(milliseconds: 300),
-                                curve: Curves.easeInOut,
-                              );
+                             
                             },
                           )
                         ],

@@ -27,6 +27,9 @@ class $AssetsPngGen {
   /// File path: assets/png/cash.png
   AssetGenImage get cash => const AssetGenImage('assets/png/cash.png');
 
+  /// File path: assets/png/curp.png
+  AssetGenImage get curp => const AssetGenImage('assets/png/curp.png');
+
   /// File path: assets/png/disability.png
   AssetGenImage get disability =>
       const AssetGenImage('assets/png/disability.png');
@@ -65,6 +68,7 @@ class $AssetsPngGen {
     baby,
     banner,
     cash,
+    curp,
     disability,
     empty,
     luggage,

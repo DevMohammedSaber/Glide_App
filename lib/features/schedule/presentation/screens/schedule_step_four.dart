@@ -10,9 +10,7 @@ import 'package:go_router/go_router.dart';
 class ScheduleStepFour extends StatefulWidget {
   const ScheduleStepFour({
     super.key,
-    required this.pageController,
   });
-  final PageController pageController;
 
   @override
   State<ScheduleStepFour> createState() => _ScheduleStepFourState();
@@ -75,11 +73,7 @@ class _ScheduleStepFourState extends State<ScheduleStepFour> {
                           Row(
                             children: [
                               IconButton(
-                                onPressed: () =>
-                                    widget.pageController.previousPage(
-                                  duration: const Duration(milliseconds: 300),
-                                  curve: Curves.easeInOut,
-                                ),
+                                onPressed: () {},
                                 icon: Icon(Platform.isIOS
                                     ? Icons.arrow_back_ios
                                     : Icons.arrow_back),

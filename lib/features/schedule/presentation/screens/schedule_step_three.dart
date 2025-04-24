@@ -12,9 +12,7 @@ import 'package:glide/gen/assets.gen.dart';
 class ScheduleStepThree extends StatefulWidget {
   const ScheduleStepThree({
     super.key,
-    required this.pageController,
   });
-  final PageController pageController;
 
   @override
   State<ScheduleStepThree> createState() => _ScheduleStepThreeState();
@@ -196,12 +194,7 @@ class _ScheduleStepThreeState extends State<ScheduleStepThree> {
                               Row(
                                 children: [
                                   IconButton(
-                                    onPressed: () =>
-                                        widget.pageController.previousPage(
-                                      duration:
-                                          const Duration(milliseconds: 300),
-                                      curve: Curves.easeInOut,
-                                    ),
+                                    onPressed: () {},
                                     icon: Icon(Platform.isIOS
                                         ? Icons.arrow_back_ios
                                         : Icons.arrow_back),
@@ -423,10 +416,7 @@ class _ScheduleStepThreeState extends State<ScheduleStepThree> {
                                 textColor: Colors.white,
                                 title: 'Continue',
                                 onPressed: () {
-                                  widget.pageController.nextPage(
-                                      duration:
-                                          const Duration(milliseconds: 300),
-                                      curve: Curves.easeIn);
+                                  
                                 },
                               ),
                             ],

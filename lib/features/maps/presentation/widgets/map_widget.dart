@@ -24,32 +24,34 @@ class _MapWidgetState extends State<MapWidget> {
     zoom: 14.4746,
   );
 
+  Set<Marker> _markers = {};
+  Set<Polyline> _polylines = {};
+
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => MapCubit(),
-      child: BlocBuilder<MapCubit, MapStates>(
-        builder: (context, state) {
-          if (state is MapState) {
-            return GoogleMap(
-              initialCameraPosition: _kGooglePlex,
-              onMapCreated: (controller) {
-                _controller.complete(controller);
-              },
-              gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{
-                Factory<OneSequenceGestureRecognizer>(
-                  () => EagerGestureRecognizer(),
-                ),
-              },
-              markers: state.markers,
-              polylines: state.polylines,
-              onTap: (position) {
-                context.read<MapCubit>().addMarker(position);
-              },
-            );
-          } else {
-            return const Center(child: CircularProgressIndicator());
-          }
+    return BlocListener<MapCubit, MapStates>(
+      listener: (context, state) {
+        if (state is MapLoadedState) {
+          setState(() {
+            _markers = state.markers;
+            _polylines = state.polylines;
+          });
+        }
+      },
+      child: GoogleMap(
+        initialCameraPosition: _kGooglePlex,
+        onMapCreated: (controller) {
+          _controller.complete(controller);
+        },
+        gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{
+          Factory<OneSequenceGestureRecognizer>(
+            () => EagerGestureRecognizer(),
+          ),
+        },
+        markers: _markers,
+        polylines: _polylines,
+        onTap: (position) {
+          context.read<MapCubit>().addMarker(position);
         },
       ),
     );

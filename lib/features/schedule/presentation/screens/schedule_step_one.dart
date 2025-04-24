@@ -9,9 +9,7 @@ import 'package:go_router/go_router.dart';
 class ScheduleStepOne extends StatelessWidget {
   const ScheduleStepOne({
     super.key,
-    required this.pageController,
   });
-  final PageController pageController;
   @override
   Widget build(BuildContext context) {
     return Align(
