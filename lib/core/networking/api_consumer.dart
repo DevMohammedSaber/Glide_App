@@ -13,7 +13,12 @@ abstract class ApiConsumer {
     Object? body,
     Map<String, String>? headers,
   });
-
+  Future<dynamic> patch({
+    required String path,
+    Map<String, dynamic>? queryParameters,
+    Object? body,
+    Map<String, String>? headers,
+  });
   Future<dynamic> put({
     required String path,
     Map<String, dynamic>? queryParameters,

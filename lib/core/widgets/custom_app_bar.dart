@@ -22,7 +22,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             return SvgPicture.asset(
                 theme.brightness == Brightness.dark
                     ? Assets.svg.lightGlideLogo
-                    : Assets.svg.darkGlideLogo,
+                    : Assets.svg.glide,
                 height: 24.h);
           },
         ),

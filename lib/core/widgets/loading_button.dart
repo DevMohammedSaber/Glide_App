@@ -35,7 +35,7 @@ class LoadingButton extends StatelessWidget {
       height: height ?? 50.h,
       elevation: 0,
       color: bgColor ?? AppColors.primary(context),
-      successColor: Colors.white,
+      disabledColor: AppColors.primary(context),
       child: child,
     );
   }

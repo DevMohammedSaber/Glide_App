@@ -108,6 +108,9 @@ class $AssetsSvgGen {
   /// File path: assets/svg/food.svg
   String get food => 'assets/svg/food.svg';
 
+  /// File path: assets/svg/glide.svg
+  String get glide => 'assets/svg/glide.svg';
+
   /// File path: assets/svg/google.svg
   String get google => 'assets/svg/google.svg';
 
@@ -169,6 +172,7 @@ class $AssetsSvgGen {
     disabledCar,
     elder,
     food,
+    glide,
     google,
     history,
     historyFilled,

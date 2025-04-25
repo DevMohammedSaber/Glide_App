@@ -22,6 +22,8 @@ class DioConsumer implements ApiConsumer {
       PrettyDioLogger(
         request: false,
         requestBody: true,
+        requestHeader: true,
+        responseHeader: true,
       ),
     );
   }
@@ -47,6 +49,19 @@ class DioConsumer implements ApiConsumer {
   }) async {
     return _handleRequest(
       () => client.post(path, queryParameters: queryParameters, data: body),
+      headers: headers,
+    );
+  }
+
+  @override
+  Future<dynamic> patch({
+    required String path,
+    Map<String, dynamic>? queryParameters,
+    Object? body,
+    Map<String, String>? headers,
+  }) async {
+    return _handleRequest(
+      () => client.patch(path, queryParameters: queryParameters, data: body),
       headers: headers,
     );
   }
@@ -101,8 +116,15 @@ class DioConsumer implements ApiConsumer {
     Map<String, String>? headers,
   }) async {
     try {
-      client.options.headers = headers;
       final response = await request();
+      // .then((req) async {
+      //   return await client.fetch(req.requestOptions.copyWith(
+      //     headers: {
+      //       ...client.options.headers,
+      //       ...?headers,
+      //     },
+      //   ));
+      // });
       return _handleResponseAsJson(response);
     } on DioException catch (e) {
       throw _handleError(e);

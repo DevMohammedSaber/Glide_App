@@ -1,0 +1,71 @@
+import 'dart:developer';
+
+import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
+import 'package:glide/core/networking/app_apis.dart';
+import 'package:glide/core/networking/dio_consumer.dart';
+import 'package:glide/core/networking/failure.dart';
+import 'package:glide/features/booking/data/datasources/booking_remote_datasource.dart';
+import 'package:glide/features/booking/data/models/booking_request_model.dart';
+import 'package:glide/features/booking/data/models/booking_response_model.dart';
+
+class BookingRemoteDataSourceImpl implements BookingRemoteDataSource {
+  final DioConsumer _dioConsumer;
+
+  BookingRemoteDataSourceImpl(this._dioConsumer);
+
+  @override
+  Future<Either<Failure, BookingResponseModel>> booking(
+      {required BookingRequestModel bookingRequestModel}) async {
+    try {
+      final Response response = await _dioConsumer.post(
+        path: AppApis.booking,
+        body: bookingRequestModel.toJson(),
+      );
+
+      if (response.statusCode.toString().contains('20')) {
+        return Right(BookingResponseModel.fromJson(response.data));
+      } else {
+        return Left(Failure(message: response.data['message']));
+      }
+    } catch (e) {
+      return Left(Failure(message: e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, BookingResponseModel>> rideStatus(
+      {required int bookingId}) async {
+    try {
+      log(AppApis.rideStatus(bookingId: bookingId));
+      final Response response = await _dioConsumer.get(
+        path: AppApis.rideStatus(bookingId: bookingId),
+      );
+
+      if (response.statusCode.toString().contains('20')) {
+        return Right(BookingResponseModel.fromJson(response.data));
+      } else {
+        return Left(Failure(message: response.data['message']));
+      }
+    } catch (e) {
+      return Left(Failure(message: e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, dynamic>> cancelRide({required int bookingId}) async {
+    try {
+      final Response response = await _dioConsumer.patch(
+          path: AppApis.cancelRide(bookingId: bookingId),
+          body: {"reason": "string"});
+
+      if (response.statusCode.toString().contains('20')) {
+        return Right(response.data);
+      } else {
+        return Left(Failure(message: response.data['message']));
+      }
+    } catch (e) {
+      return Left(Failure(message: e.toString()));
+    }
+  }
+}

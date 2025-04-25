@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:glide/core/utils/constants/prefs_keys.dart';
 import 'package:glide/core/utils/helpers/app_preferences.dart';
+import 'package:glide/core/utils/helpers/tokens_storage.dart';
 import 'package:glide/core/utils/navigation/app_routes.dart';
 import 'package:glide/core/utils/theme/app_colors.dart';
 import 'package:glide/core/utils/theme/theme.dart';
@@ -87,6 +88,7 @@ class CustomDrawer extends StatelessWidget {
             icon: Icons.logout,
             title: "Logout",
             onTap: () {
+              TokenStorage().clearTokens();
               AppPreferences().clear();
               AppPreferences().setBool(PrefKeys.isOnboarding, true);
               context.go(AppRoutes.authenticationScreen);

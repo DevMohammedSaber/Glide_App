@@ -11,19 +11,20 @@ import 'package:glide/features/authentication/domain/usecases/register_usecase.d
 import 'package:glide/features/authentication/domain/usecases/send_otp_usecase.dart';
 import 'package:glide/features/authentication/domain/usecases/verify_otp_usecase.dart';
 import 'package:glide/features/authentication/presentation/cubit/auth_cubit.dart';
+import 'package:glide/features/booking/domain/usecases/cancel_ride_usecase.dart';
 import 'package:glide/features/login/data/datasources/login_remote_datasource.dart';
 import 'package:glide/features/login/data/datasources/login_remote_datasource_impl.dart';
 import 'package:glide/features/login/data/repositories/login_repo_impl.dart';
 import 'package:glide/features/login/domain/repositories/login_repo.dart';
 import 'package:glide/features/login/domain/usecases/login_usecase.dart';
 import 'package:glide/features/login/presentation/cubit/login_cubit.dart';
-import 'package:glide/features/maps/data/datasources/booking_remote_datasource.dart';
-import 'package:glide/features/maps/data/datasources/booking_remote_datasource_impl.dart';
-import 'package:glide/features/maps/data/repositories/booking_repo_impl.dart';
-import 'package:glide/features/maps/domain/repositories/booking_repo.dart';
-import 'package:glide/features/maps/domain/usecases/booking_usecase.dart';
-import 'package:glide/features/maps/domain/usecases/ride_status_usecase.dart';
-import 'package:glide/features/maps/presentation/cubit/booking_cubit.dart';
+import 'package:glide/features/booking/data/datasources/booking_remote_datasource.dart';
+import 'package:glide/features/booking/data/datasources/booking_remote_datasource_impl.dart';
+import 'package:glide/features/booking/data/repositories/booking_repo_impl.dart';
+import 'package:glide/features/booking/domain/repositories/booking_repo.dart';
+import 'package:glide/features/booking/domain/usecases/booking_usecase.dart';
+import 'package:glide/features/booking/domain/usecases/ride_status_usecase.dart';
+import 'package:glide/features/booking/presentation/cubit/booking_cubit.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 final di = GetIt.instance;
@@ -61,6 +62,7 @@ void configureDependencies() {
   );
   di.registerLazySingleton<BookingUsecase>(() => BookingUsecase(di()));
   di.registerLazySingleton<RideStatusUsecase>(() => RideStatusUsecase(di()));
+  di.registerLazySingleton<CancelRideUsecase>(() => CancelRideUsecase(di()));
 
   di.registerLazySingleton(() => SendOtpUseCase(di()));
   di.registerLazySingleton(() => VerifyOtpUseCase(di()));
@@ -78,5 +80,6 @@ void configureDependencies() {
   di.registerFactory(() => BookingCubit(
         bookingUsecase: di(),
         rideStatusUsecase: di(),
+        cancelRideUsecase: di(),
       ));
 }

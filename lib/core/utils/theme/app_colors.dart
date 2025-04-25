@@ -15,7 +15,10 @@ class AppColors {
       Theme.of(context).colorScheme.error;
   static Color text(BuildContext context) =>
       Theme.of(context).textTheme.bodyLarge!.color!;
-
+  static Color whiteBlack(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.light
+          ?  Colors.white
+          : Colors.black;
   static Color grey(BuildContext context) =>
       Theme.of(context).brightness == Brightness.light
           ? const Color(0xFFAFAFAF)

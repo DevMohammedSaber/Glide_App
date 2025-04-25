@@ -5,6 +5,7 @@ void showSnackBar(
     {String? title,
     required String message,
     required BuildContext context,
+    ContentType? contentType,
     Color? color}) {
   final snckBar = SnackBar(
       elevation: 0,
@@ -14,7 +15,7 @@ void showSnackBar(
         color: color,
         title: title ?? '',
         message: message,
-        contentType: ContentType.failure,
+        contentType: contentType ?? ContentType.failure,
         titleTextStyle: const TextStyle(
           color: Colors.white,
           fontWeight: FontWeight.w600,
@@ -24,7 +25,6 @@ void showSnackBar(
           fontWeight: FontWeight.w500,
         ),
       ));
-  ScaffoldMessenger.of(context).removeCurrentSnackBar();
   ScaffoldMessenger.of(context)
     ..hideCurrentSnackBar()
     ..showSnackBar(snckBar);

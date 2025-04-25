@@ -10,7 +10,8 @@ class CustomButton extends StatelessWidget {
     this.bgColor,
     this.textColor,
     this.textStyle,
-    this.width, this.child,
+    this.width,
+    this.child,
   });
 
   final String title;
@@ -30,7 +31,7 @@ class CustomButton extends StatelessWidget {
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           backgroundColor: bgColor ?? AppColors.primary(context),
-          foregroundColor: textColor ?? AppColors.text(context),
+          foregroundColor: textColor ?? AppColors.whiteBlack(context),
           // fixedSize: Size.infinite,
           elevation: 0,
           shape: RoundedRectangleBorder(
@@ -39,14 +40,15 @@ class CustomButton extends StatelessWidget {
           padding: const EdgeInsets.all(0),
         ),
         onPressed: onPressed,
-        child:child?? Text(
-          title,
-          style: textStyle ??
-              const TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w600,
-              ),
-        ),
+        child: child ??
+            Text(
+              title,
+              style: textStyle ??
+                  const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                  ),
+            ),
       ),
     );
   }

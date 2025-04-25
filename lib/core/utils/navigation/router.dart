@@ -7,7 +7,7 @@ import 'package:glide/features/authentication/presentation/screens/otp_screen.da
 import 'package:glide/features/authentication/presentation/screens/register_screen.dart';
 import 'package:glide/features/layout/screen/layout_screen.dart';
 import 'package:glide/features/login/presentation/screens/login_screen.dart';
-import 'package:glide/features/maps/presentation/screen/map_screen.dart';
+import 'package:glide/features/booking/presentation/screen/map_screen.dart';
 import 'package:glide/features/onboarding/screen/onboarding_screen.dart';
 import 'package:glide/features/profile/screens/wallert_screen.dart';
 import 'package:go_router/go_router.dart';

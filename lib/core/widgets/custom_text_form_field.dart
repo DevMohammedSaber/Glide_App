@@ -14,6 +14,7 @@ class CustomTextFormField extends StatelessWidget {
     this.minLines = 1,
     this.maxLines = 1,
     this.controller,
+    this.textAlignVertical,
   });
   final String? labelText;
   final String? Function(String?)? validator;
@@ -23,10 +24,11 @@ class CustomTextFormField extends StatelessWidget {
   final int minLines;
   final int maxLines;
   final TextEditingController? controller;
+  final TextAlignVertical? textAlignVertical;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      textAlignVertical: TextAlignVertical.center,
+      textAlignVertical: textAlignVertical ?? TextAlignVertical.center,
       controller: controller,
       onChanged: onChanged,
       keyboardType: keyboardType,
