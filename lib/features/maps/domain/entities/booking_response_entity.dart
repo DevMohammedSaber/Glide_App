@@ -1,62 +1,134 @@
 import 'package:equatable/equatable.dart';
 
 class BookingResponseEntity extends Equatable {
-  final PickupLocationEntity pickupLocation;
-  final String pickupAddressId;
-  final DropoffLocationEntity dropoffLocation;
-  final String dropoffAddressId;
-  final String scheduledTime;
-  final String vehicleType;
-  final String isWheelchairNeeded;
-  final int paymentMethodId;
-  final String notes;
+  final int id;
+  final int customerId;
+  final int? driverId;
+  final int? vehicleId;
+  final AddressEntity pickupAddress;
+  final AddressEntity dropoffAddress;
+  final String status;
+  final String? scheduledTime;
+  final String? pickupTime;
+  final String? dropoffTime;
+  final num estimatedDistance;
+  final num estimatedDuration;
+  final num estimatedFare;
+  final num? actualFare;
+  final PaymentMethodEntity? paymentMethod;
+  final String paymentStatus;
+  final DriverEntity? driver;
+  final VehicleEntity? vehicle;
+  final List<StopEntity>? stops;
+  final String createdAt;
+  final String updatedAt;
 
   const BookingResponseEntity({
-    required this.pickupLocation,
-    required this.dropoffLocation,
-    required this.pickupAddressId,
-    required this.dropoffAddressId,
+    required this.id,
+    required this.customerId,
+    required this.driverId,
+    required this.vehicleId,
+    required this.pickupAddress,
+    required this.dropoffAddress,
+    required this.status,
     required this.scheduledTime,
-    required this.vehicleType,
-    required this.isWheelchairNeeded,
-    required this.paymentMethodId,
-    required this.notes,
+    required this.pickupTime,
+    required this.dropoffTime,
+    required this.estimatedDistance,
+    required this.estimatedDuration,
+    required this.estimatedFare,
+    required this.actualFare,
+    required this.paymentMethod,
+    required this.paymentStatus,
+    required this.driver,
+    required this.vehicle,
+    required this.stops,
+    required this.createdAt,
+    required this.updatedAt,
   });
 
   @override
   List<Object?> get props => [
-        pickupLocation,
-        pickupAddressId,
-        dropoffAddressId,
+        id,
+        customerId,
+        driverId,
+        vehicleId,
+        pickupAddress,
+        dropoffAddress,
+        status,
         scheduledTime,
-        vehicleType,
-        isWheelchairNeeded,
-        paymentMethodId,
-        notes,
+        pickupTime,
+        dropoffTime,
+        estimatedDistance,
+        estimatedDuration,
+        estimatedFare,
+        actualFare,
+        paymentMethod,
+        paymentStatus,
+        driver,
+        vehicle,
+        stops,
+        createdAt,
+        updatedAt,
       ];
 }
 
-class PickupLocationEntity extends Equatable {
-  final double latitude;
-  final double longitude;
+class AddressEntity extends Equatable {
+  final Map<String, dynamic> propsMap;
 
-  const PickupLocationEntity({
-    required this.latitude,
-    required this.longitude,
+  const AddressEntity({required this.propsMap});
+
+  @override
+  List<Object?> get props => [propsMap];
+}
+
+class PaymentMethodEntity extends Equatable {
+  final Map<String, dynamic>? propsMap;
+
+  const PaymentMethodEntity({required this.propsMap});
+
+  @override
+  List<Object?> get props => [propsMap];
+}
+
+class DriverEntity extends Equatable {
+  final Map<String, dynamic>? propsMap;
+
+  const DriverEntity({required this.propsMap});
+
+  @override
+  List<Object?> get props => [propsMap];
+}
+
+class VehicleEntity extends Equatable {
+  final Map<String, dynamic>? propsMap;
+
+  const VehicleEntity({required this.propsMap});
+
+  @override
+  List<Object?> get props => [propsMap];
+}
+
+class StopEntity extends Equatable {
+  final LatLngEntity location;
+  final int addressId;
+  final int sequenceNumber;
+
+  const StopEntity({
+    required this.location,
+    required this.addressId,
+    required this.sequenceNumber,
   });
 
   @override
-  List<Object?> get props => [latitude, longitude];
+  List<Object?> get props => [location, addressId, sequenceNumber];
 }
 
-class DropoffLocationEntity extends Equatable {
+class LatLngEntity extends Equatable {
   final double latitude;
   final double longitude;
 
-  const DropoffLocationEntity({
-    required this.latitude,
-    required this.longitude,
-  });
+  const LatLngEntity({required this.latitude, required this.longitude});
 
   @override
   List<Object?> get props => [latitude, longitude];

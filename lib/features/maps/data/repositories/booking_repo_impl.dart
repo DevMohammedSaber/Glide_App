@@ -22,4 +22,16 @@ class BookingRepositoryImpl implements BookingRepository {
       (model) => Right(model.toEntity()),
     );
   }
+
+  @override
+  Future<Either<Failure, BookingResponseEntity>> rideStatus(
+      {required String bookingId}) async {
+    final response = await _bookingRemoteDataSource.rideStatus(
+      bookingId: bookingId,
+    );
+    return response.fold(
+      (failure) => Left(failure),
+      (model) => Right(model.toEntity()),
+    );
+  }
 }

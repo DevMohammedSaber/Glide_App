@@ -47,7 +47,10 @@ class _MapScreenState extends State<MapScreen> {
           create: (context) => MapCubit(),
         ),
         BlocProvider(
-          create: (context) => BookingCubit(bookingUsecase: di()),
+          create: (context) => BookingCubit(
+            bookingUsecase: di(),
+            rideStatusUsecase: di(),
+          ),
         ),
       ],
       child: const Scaffold(

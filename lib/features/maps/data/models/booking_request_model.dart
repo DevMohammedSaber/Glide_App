@@ -4,7 +4,7 @@ class BookingRequestModel {
   final DropoffLocationModel dropoffLocation;
   int? dropoffAddressId;
   String? scheduledTime;
-  String? vehicleType;
+  final String vehicleType;
   bool? isWheelchairNeeded;
   int? paymentMethodId;
   String? notes;
@@ -15,7 +15,7 @@ class BookingRequestModel {
     required this.dropoffLocation,
     this.dropoffAddressId,
     this.scheduledTime,
-    this.vehicleType,
+    required this.vehicleType,
     this.isWheelchairNeeded,
     this.paymentMethodId,
     this.notes,
@@ -46,9 +46,7 @@ class BookingRequestModel {
     if (scheduledTime != null) {
       data['scheduled_time'] = scheduledTime;
     }
-    if (vehicleType != null) {
-      data['vehicle_type'] = vehicleType;
-    }
+    data['vehicle_type'] = vehicleType;
     if (isWheelchairNeeded != null) {
       data['is_wheelchair_needed'] = isWheelchairNeeded;
     }
@@ -82,6 +80,7 @@ class PickupLocationModel {
     return data;
   }
 }
+
 class DropoffLocationModel {
   final double latitude;
   final double longitude;

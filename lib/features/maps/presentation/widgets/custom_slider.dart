@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -12,8 +11,10 @@ import 'package:glide/features/maps/presentation/cubit/booking_cubit.dart';
 import 'package:glide/features/maps/presentation/cubit/booking_states.dart';
 import 'package:glide/features/maps/presentation/cubit/map_cubit.dart';
 import 'package:glide/features/maps/presentation/cubit/map_states.dart';
+import 'package:glide/features/maps/presentation/widgets/services_list.dart';
 import 'package:glide/features/schedule/presentation/cubit/selection_cubit.dart';
 import 'package:glide/gen/assets.gen.dart';
+import 'package:go_router/go_router.dart';
 
 class CustomSlider extends StatefulWidget {
   const CustomSlider({
@@ -26,6 +27,7 @@ class CustomSlider extends StatefulWidget {
 
 class _CustomSliderState extends State<CustomSlider> {
   DraggableScrollableController controller = DraggableScrollableController();
+  int? selectedIndex;
 
   @override
   Widget build(BuildContext context) {
@@ -76,7 +78,7 @@ class _CustomSliderState extends State<CustomSlider> {
                               Expanded(
                                 child: Text(
                                   cubit.selectedAddressOne.isEmpty
-                                      ? "Pickup location"
+                                      ? "Pick up location"
                                       : cubit.selectedAddressOne,
                                   style: TextStyle(
                                     fontWeight: FontWeight.w500,
@@ -109,7 +111,7 @@ class _CustomSliderState extends State<CustomSlider> {
                               Expanded(
                                 child: Text(
                                   cubit.selectedAddressTwo.isEmpty
-                                      ? "Dropoff location"
+                                      ? "Drop off location"
                                       : cubit.selectedAddressTwo,
                                   style: TextStyle(
                                     fontWeight: FontWeight.w500,
@@ -188,7 +190,6 @@ class _CustomSliderState extends State<CustomSlider> {
             child: BlocListener<MapCubit, MapStates>(
               listener: (context, state) {
                 if (state is MapLoadedState && state.polylines.isNotEmpty) {
-                  log(state.polylines.length.toString());
                   WidgetsBinding.instance.addPostFrameCallback((_) {
                     controller.animateTo(
                       0.85,
@@ -233,12 +234,13 @@ class _CustomSliderState extends State<CustomSlider> {
                             SizedBox(height: 16.h),
                             Row(
                               children: [
-                                IconButton(
-                                  onPressed: () {},
-                                  icon: Icon(Platform.isIOS
+                                GestureDetector(
+                                  onTap: () {
+                                    context.pop();
+                                  },
+                                  child: Icon(Platform.isIOS
                                       ? Icons.arrow_back_ios
                                       : Icons.arrow_back),
-                                  color: AppColors.text(context),
                                 ),
                                 SizedBox(width: 14.w),
                                 Text(
@@ -257,149 +259,19 @@ class _CustomSliderState extends State<CustomSlider> {
                               create: (context) => SingleSelectionCubit(),
                               child: BlocBuilder<SingleSelectionCubit, int?>(
                                 builder: (context, selectedIndex) {
-                                  bool isSelected = false;
+                                  this.selectedIndex = selectedIndex;
                                   return ListView.separated(
-                                    itemCount: 2,
+                                    itemCount: services.length,
                                     shrinkWrap: true,
                                     physics:
                                         const NeverScrollableScrollPhysics(),
                                     separatorBuilder: (context, index) =>
                                         SizedBox(height: 16.h),
                                     itemBuilder: (context, index) {
-                                      isSelected = selectedIndex == index;
-
-                                      return InkWell(
-                                        onTap: () => context
-                                            .read<SingleSelectionCubit>()
-                                            .select(index),
-                                        borderRadius:
-                                            BorderRadius.circular(12.r),
-                                        child: Container(
-                                          height: 200.h,
-                                          width: double.infinity,
-                                          alignment: Alignment.center,
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 22),
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(12.r),
-                                            border: Border.all(
-                                              width: isSelected ? 3.w : 1.w,
-                                              color: isSelected
-                                                  ? AppColors.primary(context)
-                                                  : AppColors.lightGrey(
-                                                      context),
-                                            ),
-                                          ),
-                                          child: Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: [
-                                                  Text(
-                                                    'SUV',
-                                                    style: TextStyle(
-                                                      color: AppColors.text(
-                                                          context),
-                                                      fontSize: 16.sp,
-                                                      fontWeight:
-                                                          FontWeight.w700,
-                                                    ),
-                                                  ),
-                                                  Image.asset(
-                                                      Assets.png.curp.path),
-                                                ],
-                                              ),
-                                              SizedBox(height: 16.h),
-                                              Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: [
-                                                  Column(
-                                                    mainAxisSize:
-                                                        MainAxisSize.min,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    children: [
-                                                      Text(
-                                                        '7 Min',
-                                                        style: TextStyle(
-                                                          color: AppColors.text(
-                                                              context),
-                                                          fontSize: 16.sp,
-                                                          fontWeight:
-                                                              FontWeight.w700,
-                                                        ),
-                                                      ),
-                                                      SizedBox(height: 8.h),
-                                                      Row(
-                                                        children: [
-                                                          Image.asset(Assets
-                                                              .png.user.path),
-                                                          SizedBox(width: 6.w),
-                                                          Text(
-                                                            '4',
-                                                            style: TextStyle(
-                                                              color: AppColors
-                                                                  .text(
-                                                                      context),
-                                                              fontSize: 16.sp,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w700,
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  SvgPicture.asset(
-                                                      Assets.svg.car),
-                                                ],
-                                              ),
-                                              Divider(
-                                                height: 30.h,
-                                                color: AppColors.lightGrey(
-                                                    context),
-                                              ),
-                                              Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.end,
-                                                children: [
-                                                  Text(
-                                                    '19\$',
-                                                    style: TextStyle(
-                                                      color: AppColors.text(
-                                                          context),
-                                                      fontSize: 16.sp,
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                    ),
-                                                  ),
-                                                  SizedBox(width: 16.w),
-                                                  Text(
-                                                    '23\$',
-                                                    style: TextStyle(
-                                                      color: AppColors.grey(
-                                                          context),
-                                                      fontSize: 16.sp,
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                      decoration: TextDecoration
-                                                          .lineThrough,
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ],
-                                          ),
-                                        ),
+                                      return ServiceItem(
+                                        slectedIndex: selectedIndex,
+                                        index: index,
+                                        service: services[index],
                                       );
                                     },
                                   );
@@ -463,13 +335,7 @@ class _CustomSliderState extends State<CustomSlider> {
                                   ),
                                 ),
                                 onPressed: () {
-                                  if (cubit.selectedPoints.length > 1) {
-                                    bookingCubit.booking(
-                                        dropoffLocation:
-                                            cubit.selectedPoints[0],
-                                        pickupLocation:
-                                            cubit.selectedPoints[1]);
-                                  } else {
+                                  if (cubit.selectedPoints.isEmpty) {
                                     showSnackBar(
                                       context: context,
                                       color: Colors.red,
@@ -479,6 +345,31 @@ class _CustomSliderState extends State<CustomSlider> {
                                     );
                                     bookingCubit.btnController.stop();
                                     bookingCubit.btnController.reset();
+                                  } else if (cubit.selectedPoints.length == 1) {
+                                    showSnackBar(
+                                      context: context,
+                                      color: Colors.red,
+                                      title: 'On Snap!',
+                                      message:
+                                          "Please select drop off location!",
+                                    );
+                                    bookingCubit.btnController.stop();
+                                    bookingCubit.btnController.reset();
+                                  } else if (selectedIndex == null) {
+                                    showSnackBar(
+                                      context: context,
+                                      color: Colors.red,
+                                      title: 'On Snap!',
+                                      message: "Please select car type!",
+                                    );
+                                    bookingCubit.btnController.stop();
+                                    bookingCubit.btnController.reset();
+                                  } else {
+                                    bookingCubit.booking(
+                                      dropoffLocation: cubit.selectedPoints[0],
+                                      pickupLocation: cubit.selectedPoints[1],
+                                      selectedIndex: selectedIndex!,
+                                    );
                                   }
                                 },
                               ),
@@ -498,37 +389,120 @@ class _CustomSliderState extends State<CustomSlider> {
   }
 }
 
-final List<String> keys = [
-  'Adults - \$ 9',
-  'Elders - \$ 5',
-  'Children - \$ 0',
-  'Animals - \$ 9',
-  'Luggage - \$ 2',
-];
-final List<String> values = [
-  '( 10 to 60 Years old )',
-  '( Above 60 Year old )',
-  'under‘ 10 years of age accompanied by an adult going to the same place are to be carried free',
-  'Carrying animals loose or in cages will be charged full adult rate.',
-  'more than 2 pieces of luggage or packages/boxes, but shall not include grocery bagged items ',
-];
+class ServiceItem extends StatelessWidget {
+  const ServiceItem({
+    super.key,
+    required this.slectedIndex,
+    required this.index,
+    required this.service,
+  });
 
-final List<String> values2 = [
-  '( 10 to 60 Years old )',
-  '( Above 60 Year old )',
-  'under‘ 10 years of age accompanied by an adult going to the same place are to be carried free',
-  'Carrying animals loose or in cages will be charged full adult rate.',
-  'more than 2 pieces of luggage or packages/boxes, but shall not include grocery bagged items ',
-];
-final List<String> icons = [
-  Assets.png.user.path,
-  Assets.png.disability.path,
-  Assets.png.baby.path,
-  Assets.png.luggage.path,
-];
-final List<String> iconsValues = [
-  '5',
-  '4',
-  '3',
-  '4',
-];
+  final int? slectedIndex;
+  final int index;
+  final ServiceModel service;
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () => context.read<SingleSelectionCubit>().select(index),
+      borderRadius: BorderRadius.circular(12.r),
+      child: Container(
+        height: 200.h,
+        width: double.infinity,
+        alignment: Alignment.center,
+        padding: const EdgeInsets.symmetric(horizontal: 22),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12.r),
+          border: Border.all(
+            width: slectedIndex == index ? 3.w : 1.w,
+            color: slectedIndex == index
+                ? AppColors.primary(context)
+                : AppColors.lightGrey(context),
+          ),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  service.name,
+                  style: TextStyle(
+                    color: AppColors.text(context),
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                Image.asset(Assets.png.curp.path),
+              ],
+            ),
+            SizedBox(height: 16.h),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      service.time,
+                      style: TextStyle(
+                        color: AppColors.text(context),
+                        fontSize: 16.sp,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    SizedBox(height: 8.h),
+                    Row(
+                      children: [
+                        Image.asset(Assets.png.user.path),
+                        SizedBox(width: 6.w),
+                        Text(
+                          service.count,
+                          style: TextStyle(
+                            color: AppColors.text(context),
+                            fontSize: 16.sp,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                SvgPicture.asset(Assets.svg.car),
+              ],
+            ),
+            Divider(
+              height: 30.h,
+              color: AppColors.lightGrey(context),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Text(
+                  service.afterPrice,
+                  style: TextStyle(
+                    color: AppColors.text(context),
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                SizedBox(width: 16.w),
+                Text(
+                  service.beforePrice,
+                  style: TextStyle(
+                    color: AppColors.grey(context),
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.w600,
+                    decoration: TextDecoration.lineThrough,
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

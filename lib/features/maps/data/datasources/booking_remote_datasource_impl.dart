@@ -30,4 +30,25 @@ class BookingRemoteDataSourceImpl implements BookingRemoteDataSource {
       return Left(Failure(message: e.toString()));
     }
   }
+
+  @override
+  Future<Either<Failure, BookingResponseModel>> rideStatus(
+      {required String bookingId}) async {
+    try {
+      final Response response = await _dioConsumer.get(
+        path: AppApis.rideStatus,
+        queryParameters: {
+          "booking_id": bookingId,
+        },
+      );
+
+      if (response.statusCode.toString().contains('20')) {
+        return Right(BookingResponseModel.fromJson(response.data));
+      } else {
+        return Left(Failure(message: response.data['message']));
+      }
+    } catch (e) {
+      return Left(Failure(message: e.toString()));
+    }
+  }
 }

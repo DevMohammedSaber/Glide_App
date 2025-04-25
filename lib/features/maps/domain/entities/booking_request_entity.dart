@@ -6,7 +6,7 @@ class BookingRequestEntity extends Equatable {
   final DropoffLocationEntity dropoffLocation;
   final int? dropoffAddressId;
   final String? scheduledTime;
-  final String? vehicleType;
+  final String vehicleType;
   final bool? isWheelchairNeeded;
   final int? paymentMethodId;
   final String? notes;
@@ -17,7 +17,7 @@ class BookingRequestEntity extends Equatable {
     this.pickupAddressId,
     this.dropoffAddressId,
     this.scheduledTime,
-    this.vehicleType,
+    required this.vehicleType,
     this.isWheelchairNeeded,
     this.paymentMethodId,
     this.notes,

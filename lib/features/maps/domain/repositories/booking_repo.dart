@@ -7,4 +7,7 @@ abstract class BookingRepository {
   Future<Either<Failure, BookingResponseEntity>> booking({
     required BookingRequestEntity bookingRequestEntity,
   });
+  Future<Either<Failure, BookingResponseEntity>> rideStatus({
+    required String bookingId,
+  });
 }

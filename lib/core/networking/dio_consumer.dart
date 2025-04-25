@@ -122,7 +122,8 @@ class DioConsumer implements ApiConsumer {
     if (exception.response != null) {
       final errorResponse = exception.response?.data;
       if (errorResponse is Map) {
-        errorMessage = errorResponse['message'] ?? errorMessage;
+        errorMessage =
+            errorResponse['message'] ?? errorResponse['msg'] ?? errorMessage;
       }
     }
 

@@ -22,6 +22,7 @@ import 'package:glide/features/maps/data/datasources/booking_remote_datasource_i
 import 'package:glide/features/maps/data/repositories/booking_repo_impl.dart';
 import 'package:glide/features/maps/domain/repositories/booking_repo.dart';
 import 'package:glide/features/maps/domain/usecases/booking_usecase.dart';
+import 'package:glide/features/maps/domain/usecases/ride_status_usecase.dart';
 import 'package:glide/features/maps/presentation/cubit/booking_cubit.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -53,13 +54,13 @@ void configureDependencies() {
   );
   di.registerLazySingleton<LoginUsecase>(() => LoginUsecase(di()));
 
-   di.registerLazySingleton<BookingRepository>(
+  di.registerLazySingleton<BookingRepository>(
       () => BookingRepositoryImpl(di<BookingRemoteDataSource>()));
   di.registerLazySingleton<BookingRemoteDataSource>(
     () => BookingRemoteDataSourceImpl(di<DioConsumer>()),
   );
   di.registerLazySingleton<BookingUsecase>(() => BookingUsecase(di()));
-
+  di.registerLazySingleton<RideStatusUsecase>(() => RideStatusUsecase(di()));
 
   di.registerLazySingleton(() => SendOtpUseCase(di()));
   di.registerLazySingleton(() => VerifyOtpUseCase(di()));
@@ -76,5 +77,6 @@ void configureDependencies() {
       ));
   di.registerFactory(() => BookingCubit(
         bookingUsecase: di(),
+        rideStatusUsecase: di(),
       ));
 }

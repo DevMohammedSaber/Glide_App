@@ -7,4 +7,5 @@ abstract class BookingRemoteDataSource {
   Future<Either<Failure, BookingResponseModel>> booking({
     required BookingRequestModel bookingRequestModel,
   });
+  Future<Either<Failure, BookingResponseModel>> rideStatus({required String bookingId});
 }
