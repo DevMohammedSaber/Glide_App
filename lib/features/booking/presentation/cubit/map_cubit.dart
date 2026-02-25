@@ -12,7 +12,7 @@ import 'package:widget_to_marker/widget_to_marker.dart';
 
 class MapCubit extends Cubit<MapStates> {
   MapCubit() : super(MapLoadedState(markers: const {}, polylines: const {}));
-  
+
   void counterIncrementDecrement(int value) {
     emit(CounterState(value + 1));
   }
@@ -79,7 +79,7 @@ class MapCubit extends Cubit<MapStates> {
   }
 
   Future<Polyline> _createPolyline() async {
-    PolylinePoints polylinePoints = PolylinePoints();
+    PolylinePoints polylinePoints = PolylinePoints(apiKey: AppApis.googleKey);
 
     final result = await polylinePoints.getRouteBetweenCoordinates(
       request: PolylineRequest(
@@ -89,7 +89,6 @@ class MapCubit extends Cubit<MapStates> {
             selectedPoints[1].latitude, selectedPoints[1].longitude),
         mode: TravelMode.driving,
       ),
-      googleApiKey: AppApis.googleKey,
     );
 
     final points =

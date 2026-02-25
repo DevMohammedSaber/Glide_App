@@ -39,16 +39,27 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
 
   @override
   Future<AuthModel> signInWithGoogle() async {
-    final googleUser = await _googleSignIn.signIn();
-    final googleAuth = await googleUser!.authentication;
+    try {
+      final GoogleSignInAccount googleUser = await _googleSignIn.authenticate();
 
-    final credential = GoogleAuthProvider.credential(
-      accessToken: googleAuth.accessToken,
-      idToken: googleAuth.idToken,
-    );
+      final GoogleSignInAuthentication googleAuth =
+          await googleUser.authentication;
 
-    final userCredential = await _auth.signInWithCredential(credential);
-    return _mapFirebaseUser(userCredential.user!);
+      final AuthCredential credential = GoogleAuthProvider.credential(
+        idToken: googleAuth.idToken,
+      );
+
+      final UserCredential userCredential =
+          await _auth.signInWithCredential(credential);
+
+      if (userCredential.user == null) {
+        throw Exception('Firebase Sign-In failed.');
+      }
+
+      return _mapFirebaseUser(userCredential.user!);
+    } catch (e) {
+      throw Exception('Google Sign-In failed: $e');
+    }
   }
 
   AuthModel _mapFirebaseUser(User user) => AuthModel(

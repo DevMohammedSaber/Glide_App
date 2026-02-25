@@ -115,8 +115,10 @@ class CustomPhoneFormField extends StatelessWidget {
                             children: [
                               CountryFlag.fromCountryCode(
                                 state.selectedCountry.toUpperCase(),
-                                height: 24.h,
-                                width: 38.w,
+                                theme: ImageTheme(
+                                  width: 38.w,
+                                  height: 24.h,
+                                ),
                               ),
                               SizedBox(width: 8.w),
                               Icon(

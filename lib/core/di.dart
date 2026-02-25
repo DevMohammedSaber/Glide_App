@@ -32,7 +32,7 @@ final di = GetIt.instance;
 void configureDependencies() {
   di.registerLazySingleton<Dio>(() => Dio());
   di.registerLazySingleton<FirebaseAuth>(() => FirebaseAuth.instance);
-  di.registerLazySingleton<GoogleSignIn>(() => GoogleSignIn.standard());
+  di.registerLazySingleton<GoogleSignIn>(() => GoogleSignIn.instance);
 
   di.registerLazySingleton<DioConsumer>(() => DioConsumer(client: di()));
 
